@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxTiltAngle = 10.0f;
     [SerializeField] private float adjustSpeed = 5.0f;
 
+    [Header("Weapon Handling")]
+    [SerializeField] private Weapon activeWeapon;
+
     private float smoothedTiltRotation;
 
     private Transform mainCameraTransform;
