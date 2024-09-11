@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 1275208925}
   - component: {fileID: 1275208924}
   - component: {fileID: 1275208926}
+  - component: {fileID: 1275208927}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -288,11 +289,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayStartPoint: {fileID: 1275208923}
-  maxDistance: Infinity
-  fireRate: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &1275208927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275208920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce628a473be4f547904716667ad9daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 11400000, guid: ed4b6aede3c9f0b48b6fe48c14e3f7a3, type: 2}
+  - {fileID: 11400000, guid: 7fcc0b47203477c4a8d1075c55b22db5, type: 2}
 --- !u!1 &1301912360
 GameObject:
   m_ObjectHideFlags: 0
