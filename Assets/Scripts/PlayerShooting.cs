@@ -2,19 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerShooting : MonoBehaviour
 {
 
     [SerializeField]
     private Transform rayStartPoint;
-    [SerializeField]
     private float maxDistance = Mathf.Infinity, fireRate; //fireRate = 0 => shoot once
                                                           //else interval between shots is (fireRate) seconds.
     [SerializeField]
     private LayerMask layerMask;
     private Coroutine currentRunningRoutine;
     private bool routineActive;
+    private WeaponScriptableObject equippedWeapon;
+    public WeaponScriptableObject EquippedWeapon { get => equippedWeapon; set => SetWeapon(); }
+
+    private void Start()
+    {
+        equippedWeapon = EquippedWeapon;
+        SetWeapon();
+    }
 
     // Update is called once per frame
     void Update()
@@ -50,6 +58,13 @@ public class PlayerShooting : MonoBehaviour
             GameEvents.RaiseOnPlayerHitShot(hit);
         }
         GameEvents.RaiseOnPlayerShoot();
+    }
+
+    public void SetWeapon()
+    {
+        equippedWeapon = EquippedWeapon;
+        fireRate = equippedWeapon.fireRate;
+        //.....
     }
 
 }
