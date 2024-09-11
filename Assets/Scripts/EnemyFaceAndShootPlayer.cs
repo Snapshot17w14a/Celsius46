@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyShooting : MonoBehaviour
+public class EnemyShooting : MonoBehaviour, IDamagable
 {
     public float minRange = 5f;  // Minimum range where hit chance is max
     public float maxRange = 50f; // Maximum range where hit chance is 0%
@@ -16,11 +16,11 @@ public class EnemyShooting : MonoBehaviour
         if (playerObject != null)
         {
             player = playerObject.transform;
-            Debug.Log("Player found and stored.");
+            //Debug.Log("Player found and stored.");
         }
         else
         {
-            Debug.LogError("No object with tag 'Player' found.");
+            //Debug.LogError("No object with tag 'Player' found.");
         }
     }
 
@@ -48,26 +48,26 @@ public class EnemyShooting : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
-        Debug.Log("Enemy rotating to face player.");
+        //Debug.Log("Enemy rotating to face player.");
     }
 
     void ShootAtPlayer()
     {
         float distance = Vector3.Distance(transform.position, player.position);
-        Debug.Log("Distance to player: " + distance);
+        //Debug.Log("Distance to player: " + distance);
 
         // Calculate hit chance based on distance
         float hitChance = CalculateHitProbability(distance);
-        Debug.Log("Hit chance based on distance: " + hitChance);
+        //Debug.Log("Hit chance based on distance: " + hitChance);
 
         // Random check to determine if shot hits
         if (Random.value <= hitChance)
         {
-            Debug.Log("Shot hit the player!");
+            //Debug.Log("Shot hit the player!");
         }
         else
         {
-            Debug.Log("Shot missed the player.");
+            //Debug.Log("Shot missed the player.");
         }
     }
 
@@ -75,16 +75,21 @@ public class EnemyShooting : MonoBehaviour
     {
         // Clamp the distance between minRange and maxRange
         distance = Mathf.Clamp(distance, minRange, maxRange);
-        Debug.Log("Clamped distance: " + distance);
+        //Debug.Log("Clamped distance: " + distance);
 
         // Normalize the distance to a 0-1 range (0 = minRange, 1 = maxRange)
         float normalizedDistance = (distance - minRange) / (maxRange - minRange);
-        Debug.Log("Normalized distance: " + normalizedDistance);
+        //Debug.Log("Normalized distance: " + normalizedDistance);
 
         // Invert the normalized distance to get hit probability
         float hitChance = 1f - normalizedDistance;
-        Debug.Log("Calculated hit chance: " + hitChance);
+        //Debug.Log("Calculated hit chance: " + hitChance);
 
         return hitChance;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("Enemy took " + damage + " damage.");
     }
 }

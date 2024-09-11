@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamagable
 {
     [Header("Player Movement")]
     [SerializeField] private float speed = 5.0f;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float adjustSpeed = 5.0f;
 
     [Header("Weapon Handling")]
-    [SerializeField] private Weapon activeWeapon;
+    [SerializeField] private ShootingController shootingController;
 
     private float smoothedTiltRotation;
 
@@ -76,5 +76,10 @@ public class PlayerController : MonoBehaviour
 
         // Apply the movement
         rb.velocity = new Vector3(movementDelta.x, rb.velocity.y, movementDelta.z);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        // Implement the damage taking logic here
     }
 }
