@@ -289,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayStartPoint: {fileID: 1275208923}
   maxDistance: Infinity
+  fireRate: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 1
