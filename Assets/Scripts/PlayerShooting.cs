@@ -9,7 +9,7 @@ public class PlayerShooting : MonoBehaviour
 
     [SerializeField]
     private Transform rayStartPoint;
-    private float maxDistance = Mathf.Infinity, fireRate; //fireRate = 0 => shoot once
+    private float maxDistance = Mathf.Infinity, fireRate = 0.2f; //fireRate = 0 => shoot once
                                                           //else interval between shots is (fireRate) seconds.
     [SerializeField]
     private LayerMask layerMask;
@@ -62,8 +62,8 @@ public class PlayerShooting : MonoBehaviour
 
     public void SetWeapon()
     {
-        equippedWeapon = EquippedWeapon;
-        fireRate = equippedWeapon.fireRate;
+        //equippedWeapon = EquippedWeapon;
+        //fireRate = equippedWeapon.fireRate;
         //.....
     }
 
