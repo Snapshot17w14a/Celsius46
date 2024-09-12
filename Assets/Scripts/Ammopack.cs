@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Healthpack : PickUpItem
+public class Ammopack : PickUpItem
 {
     [SerializeField]
-    private int restoredHealthAmount = 20;
+    private int restoredAmmoAmount = 12;
 
     private new void ApplyEffect()
     {
         base.ApplyEffect();
     }
 
-    public int GetRestoredHealthAmount()
+    public int GetRestoredAmmoAmount()
     {
-        return restoredHealthAmount;
+        return restoredAmmoAmount;
     }
 }

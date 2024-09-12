@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (item is Healthpack) {
             Healthpack healthpack = (Healthpack)item;
-            currentHealth += healthpack.restoredHealthAmount;
+            currentHealth += healthpack.GetRestoredHealthAmount();
             if (currentHealth > maxHealth)
                 currentHealth = maxHealth;
         }
