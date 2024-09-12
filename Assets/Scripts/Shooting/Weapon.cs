@@ -1,16 +1,21 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected WeaponData weaponData;
-    [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private GameObject muzzleFlashPoint;
+    [SerializeField] private GameObject bulletTrace;
+
+    private readonly List<LineRenderer> traceLines = new();
 
     public WeaponData.WeaponType WeaponType => weaponData.weaponType;
     public float FireRate => weaponData.rateOfFire;
     public int MaxAmmo => weaponData.maxAmmo;
 
     protected int currentAmmo;
-    protected int currentAmmoInGun;
+    protected int currentAmmoInGun = 100;
 
     protected static PlayerController player;
 
@@ -20,21 +25,41 @@ public class Weapon : MonoBehaviour
         if (player == null) player = FindAnyObjectByType<PlayerController>();
     }
 
-    protected void PlayMuzzleFlash()
+    private void Update()
     {
-        muzzleFlash.Play();
+        if(traceLines.Count != 0) UpdateTraces();
     }
 
-    protected Collider RayCastShot(float distance)
+    private void UpdateTraces()
     {
-        RaycastHit hit;
-        Debug.DrawRay(player.transform.position, Camera.main.transform.forward * distance, Color.red, 1);
-        if (Physics.Raycast(player.transform.position, Camera.main.transform.forward, out hit, distance, LayerMask.GetMask("Enemy")))
+        foreach(LineRenderer line in traceLines)
         {
-            //Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), hit.point, Quaternion.identity);
+            
+        }
+    }
+
+    protected void PlayMuzzleFlash()
+    {
+        Destroy(Instantiate(muzzleFlash, muzzleFlashPoint.transform.position, muzzleFlashPoint.transform.rotation, muzzleFlashPoint.transform), 0.1f);
+    }
+
+    protected void DrawTrace(Vector3 target)
+    {
+        var line = Instantiate(bulletTrace, Vector3.zero, Quaternion.identity);
+        Destroy(line, 0.1f);
+        line.GetComponent<LineRenderer>().SetPositions(new[] { muzzleFlashPoint.transform.position, target });
+    }
+
+    protected Collider RayCastShot(float distance, out Vector3 point)
+    {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * distance, Color.red, 1);
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, distance, LayerMask.GetMask("Enemy")))
+        {
             GameEvents.RaiseOnPlayerHitShot(hit);
+            point = hit.point;
             return hit.collider;
         }
+        point = Vector3.zero;
         return null;
     }
 }

@@ -16,19 +16,10 @@ public class PickUpItem : MonoBehaviour, IPickable, ISoundEmitting
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Player")
+        if (CompareTag("Player"))
         {
             ApplyEffect();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
-    }
-
-    public void PlayObjectSpecificSound()
-    {
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
-        audioSource.Play();
-        print(audioSource.isPlaying);
-        print("tried playing sound...");
     }
 }
