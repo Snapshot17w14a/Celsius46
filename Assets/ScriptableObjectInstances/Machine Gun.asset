@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Machine Gun
   weaponType: 1
   reloadTime: 500
-  rateOfFire: 500
+  rateOfFire: 100
   damage: 2
   range: 20
   maxAmmo: 50

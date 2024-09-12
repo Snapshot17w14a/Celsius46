@@ -5,20 +5,16 @@ public class ShootingController : MonoBehaviour
     [SerializeField] private Weapon activeWeapon;
     [SerializeField] private Weapon[] allWeapons;
 
-    private Vector3 startingOffset;
-
     private IShootable activeWeaponInterface;
     private float lastFireTime = 0;
 
     private void Start()
     {
         activeWeaponInterface = GetActiveWeaponInterface();
-        startingOffset = transform.position;
     }
 
     private void Update()
     {
-        ApplyCameraRotation();
         CheckForShooting();
     }
 
@@ -30,7 +26,6 @@ public class ShootingController : MonoBehaviour
         switch (activeWeapon.WeaponType)
         {
             case WeaponData.WeaponType.Automatic:
-                Debug.Log("Automatic");
                 if (Input.GetMouseButton(0) && lastFireTime + activeWeapon.FireRate < Time.time * 1000) lastFireTime = activeWeaponInterface.Shoot() ? Time.time * 1000 : lastFireTime;
                 break;
             case WeaponData.WeaponType.SingleFire:
@@ -38,11 +33,6 @@ public class ShootingController : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && lastFireTime + activeWeapon.FireRate < Time.time * 1000) lastFireTime = activeWeaponInterface.Shoot() ? Time.time * 1000 : lastFireTime;
                 break;
         }
-    }
-
-    private void ApplyCameraRotation()
-    {
-        //transform.position = Camera.main.transform.rotation * startingOffset;
     }
 
     public void SwitchWeapon(int weaponIndex)

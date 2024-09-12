@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class MachineGun : Weapon, IShootable
 {
-    new int currentAmmoInGun = 50;
-
     public bool Shoot()
     {
-        Debug.Log("Machine gun shooting");
         if (currentAmmoInGun == 0) return false;
-        var target = RayCastShot(weaponData.range);
-        if (target != null) target.GetComponent<IDamagable>().TakeDamage(weaponData.damage);
+        Collider target = RayCastShot(weaponData.range, out Vector3 hitPoint);
+        if (target != null)
+        {
+            target.GetComponent<IDamagable>().TakeDamage(weaponData.damage);
+            DrawTrace(hitPoint);
+        }
+        else DrawTrace(Camera.main.transform.position + Camera.main.transform.forward * weaponData.range);
         PlayMuzzleFlash();
         return true;
     }

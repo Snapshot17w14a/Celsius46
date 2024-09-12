@@ -5,6 +5,7 @@ public class EnemyShooting : MonoBehaviour, IDamagable
     public float minRange = 5f;  // Minimum range where hit chance is max
     public float maxRange = 50f; // Maximum range where hit chance is 0%
     public float rotationSpeed = 5f; // Speed of rotation when turning to face the player
+    float health = 100.0f;
 
     private Transform player; // Player's transform will be stored here
 
@@ -91,5 +92,12 @@ public class EnemyShooting : MonoBehaviour, IDamagable
     public void TakeDamage(float damage)
     {
         Debug.Log("Enemy took " + damage + " damage.");
+        health -= damage;
+        if (health <= 0) Die();
+    }
+
+    public void Die()
+    {
+        Debug.Log("Enemy died.");
     }
 }

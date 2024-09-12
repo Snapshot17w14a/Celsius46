@@ -9,17 +9,9 @@ public class PickUpItem : MonoBehaviour, IPickable
         GameEvents.RaiseOnPlayerPickUpItem(this);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ApplyEffect();
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Player")
+        if (CompareTag("Player"))
         {
             ApplyEffect();
             Destroy(gameObject);

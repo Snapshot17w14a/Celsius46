@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IDamagable
 {
     [Header("Player Movement")]
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float startingHealth = 100.0f;
     [SerializeField] private float maxSpeed = 5.0f;
     [SerializeField] private float maxRunningSpeed = 10.0f;
     [SerializeField] private float jumpForce = 15.0f;
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, IDamagable
     [Header("Weapon Handling")]
     [SerializeField] private ShootingController shootingController;
 
+    private float health;
+
     private float smoothedTiltRotation;
 
     private Transform mainCameraTransform;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         mainCameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
+        health = startingHealth;
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void CameraUpdate()
     {
+        // Set the camera rotation to the correct value range
         Vector3 currentEulerAngles = mainCameraTransform.localEulerAngles;
         if(currentEulerAngles.x > 180) currentEulerAngles.x -= 360;
 
@@ -50,7 +54,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         mouseDelta.x = Mathf.Clamp(mouseDelta.x, -90, 90);
 
         // Tilt the camera based on the horizontal input
-        smoothedTiltRotation = Mathf.SmoothStep(smoothedTiltRotation, -Input.GetAxis("Horizontal") * maxTiltAngle, Time.fixedDeltaTime * adjustSpeed);
+        smoothedTiltRotation = Mathf.SmoothStep(smoothedTiltRotation, -Input.GetAxis("Horizontal") * maxTiltAngle, Time.deltaTime * adjustSpeed);
         mouseDelta.z = smoothedTiltRotation;
 
         // Apply the rotation
@@ -59,14 +63,13 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void MovePlayer()
     {
-        // Move the player based on the input
+        // Move the player based on the input with force
         //rb.AddForce(Input.GetAxis("Vertical") * speed * transform.forward);
         //rb.AddForce(Input.GetAxis("Horizontal") * speed * transform.right);
 
-        // Move the player based on the input
+        // Move the player based on the input with velocity
         Vector3 movementDelta = mainCameraTransform.forward * Input.GetAxis("Vertical") + mainCameraTransform.right * Input.GetAxis("Horizontal");
-        movementDelta.Normalize();
-        movementDelta *= (Input.GetKey(sprintKey) ? maxRunningSpeed : maxSpeed) * Time.deltaTime;
+        movementDelta *= (Input.GetKey(sprintKey) ? maxRunningSpeed : maxSpeed);
 
         // Jump
         if(Input.GetKeyDown(jumpKey)) rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -75,11 +78,17 @@ public class PlayerController : MonoBehaviour, IDamagable
         //rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y, Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
 
         // Apply the movement
-        rb.velocity = new Vector3(movementDelta.x, rb.velocity.y, movementDelta.z);
+        rb.velocity = new Vector3(movementDelta.x, rb.velocity.y, movementDelta.z); 
     }
 
     public void TakeDamage(float damage)
     {
-        // Implement the damage taking logic here
+        health -= damage;
+        if (health <= 0) Die();
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player died");
     }
 }
