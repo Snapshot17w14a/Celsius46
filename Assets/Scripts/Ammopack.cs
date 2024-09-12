@@ -10,6 +10,7 @@ public class Ammopack : PickUpItem
     private new void ApplyEffect()
     {
         base.ApplyEffect();
+        //add extra Ammopack specific behavior here
     }
 
     public int GetRestoredAmmoAmount()

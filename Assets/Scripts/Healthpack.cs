@@ -10,6 +10,7 @@ public class Healthpack : PickUpItem
     private new void ApplyEffect()
     {
         base.ApplyEffect();
+        //add extra Healthpack specific behavior here...
     }
 
     public int GetRestoredHealthAmount()

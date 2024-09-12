@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpItem : MonoBehaviour, IPickable
+[RequireComponent(typeof(AudioSource))]
+public class PickUpItem : MonoBehaviour, IPickable, ISoundEmitting
 {
+    [SerializeField]
+    private AudioClip audioClip;
+
     public void ApplyEffect()
     {
         GameEvents.RaiseOnPlayerPickUpItem(this);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ApplyEffect();
-        }
+        PlayObjectSpecificSound();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -22,7 +19,16 @@ public class PickUpItem : MonoBehaviour, IPickable
         if (collision.collider.tag == "Player")
         {
             ApplyEffect();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
+    }
+
+    public void PlayObjectSpecificSound()
+    {
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioClip;
+        audioSource.Play();
+        print(audioSource.isPlaying);
+        print("tried playing sound...");
     }
 }
