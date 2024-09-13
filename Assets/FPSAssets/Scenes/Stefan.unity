@@ -183,6 +183,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 15e35dc746f7e624f8094234a1c633d4, type: 2}
+  - {fileID: 2100000, guid: e5920c10917adf145868e99d6af60367, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -305,11 +306,41 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: ce9733269e16128468e704b6f76ba75e,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: ce9733269e16128468e704b6f76ba75e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5920c10917adf145868e99d6af60367, type: 2}
     - target: {fileID: 919132149155446097, guid: ce9733269e16128468e704b6f76ba75e,
         type: 3}
       propertyPath: m_Name
       value: ImageToStl.com_npp shitpost
       objectReference: {fileID: 0}
+    - target: {fileID: 7071182760956848314, guid: ce9733269e16128468e704b6f76ba75e,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071182760956848314, guid: ce9733269e16128468e704b6f76ba75e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5920c10917adf145868e99d6af60367, type: 2}
+    - target: {fileID: 7202271454713460447, guid: ce9733269e16128468e704b6f76ba75e,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202271454713460447, guid: ce9733269e16128468e704b6f76ba75e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5920c10917adf145868e99d6af60367, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
