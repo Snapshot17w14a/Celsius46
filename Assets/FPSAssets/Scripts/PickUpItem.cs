@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 [RequireComponent(typeof(AudioSource))]
 public class PickUpItem : MonoBehaviour, IPickable, ISoundEmitting
 {
@@ -19,13 +18,6 @@ public class PickUpItem : MonoBehaviour, IPickable, ISoundEmitting
     {
         GameEvents.RaiseOnPlayerPickUpItem(this);
         PlayObjectSpecificSound();
-=======
-public class PickUpItem : MonoBehaviour, IPickable
-{
-    public void ApplyEffect()
-    {
-        GameEvents.RaiseOnPlayerPickUpItem(this);
->>>>>>> origin/developement
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,7 +28,6 @@ public class PickUpItem : MonoBehaviour, IPickable
             Destroy(gameObject);
         }
     }
-<<<<<<< HEAD
 
     public void PlayObjectSpecificSound()
     {
@@ -46,6 +37,4 @@ public class PickUpItem : MonoBehaviour, IPickable
         print(audioSource.isPlaying);
         print("tried playing audio...");
     }
-=======
->>>>>>> origin/developement
 }
