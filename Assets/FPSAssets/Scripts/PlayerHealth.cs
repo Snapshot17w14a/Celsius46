@@ -7,6 +7,7 @@
 //    [SerializeField]
 //    private int currentHealth, maxHealth;
 
+<<<<<<< Updated upstream
 //    // Start is called before the first frame update
 //    void Start()
 //    {
@@ -22,6 +23,23 @@
 //                currentHealth = maxHealth;
 //        }
 //    }
+=======
+    // Start is called before the first frame update
+    void Start()
+    {
+       // GameEvents.onPlayerPickUpItem += HealPlayer;
+    }
+
+    //private void HealPlayer(PickUpItem item)
+    //{
+    //    if (item is Healthpack) {
+    //        Healthpack healthpack = (Healthpack)item;
+    //        currentHealth += healthpack.GetRestoredHealthAmount();
+    //        if (currentHealth > maxHealth)
+    //            currentHealth = maxHealth;
+    //    }
+    //}
+>>>>>>> Stashed changes
 
 //    private void TakeDamage(int damageAmount)
 //    {
