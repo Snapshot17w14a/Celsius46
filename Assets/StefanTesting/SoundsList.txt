@@ -1,0 +1,9 @@
+Menu Sounds:
+	- Select button
+	- Click button
+	- Main menu music
+Game Sounds:
+	- Background music
+	- Lightning Strike
+	- Place object (forest)
+	- Meter danger alert
