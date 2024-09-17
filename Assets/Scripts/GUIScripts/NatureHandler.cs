@@ -4,9 +4,13 @@ using System.Collections.Generic;
 
 public class NatureHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabToSpawn;             // Prefab to spawn at the clicked object's location
+    [SerializeField] private GameObject prefabToSpawn;  // Prefab to spawn at the clicked object's location
+    [SerializeField] private float minDistance = 2.0f;  // Minimum distance between placed objects
+    [SerializeField] private float collisionRadius = 2.0f;  // Radius to check for collisions (make sure it's large enough)
 
     private bool isInNaturePlacementMode = false;  // Toggle state to track nature placement mode
+    private bool isDragging = false;  // Tracks if the mouse button is held down
+    private Vector3 lastSpawnPosition = Vector3.positiveInfinity;  // Stores the position of the last spawned object
 
     void Update()
     {
@@ -17,9 +21,24 @@ public class NatureHandler : MonoBehaviour
             Debug.Log(isInNaturePlacementMode ? "Nature Placement Mode Activated!" : "Nature Placement Mode Deactivated!");
         }
 
-        if (isInNaturePlacementMode && Input.GetMouseButtonDown(0)) // Left mouse button
+        // Start placing objects on mouse drag
+        if (isInNaturePlacementMode && Input.GetMouseButtonDown(0))
+        {
+            isDragging = true;
+            PlaceTreeAtClick();
+        }
+
+        // Continue placing objects while dragging
+        if (isDragging && Input.GetMouseButton(0))
         {
             PlaceTreeAtClick();
+        }
+
+        // Stop placing objects when the mouse button is released
+        if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+            lastSpawnPosition = Vector3.positiveInfinity; 
         }
     }
 
@@ -32,15 +51,37 @@ public class NatureHandler : MonoBehaviour
         {
             Vector3 spawnPosition = hit.point;
 
-            if (prefabToSpawn != null)
+            if (prefabToSpawn != null
+                && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
+                && !IsPositionOccupied(spawnPosition))
             {
-                // Calculate direction to the origin
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
-                // Instantiate the prefab at the hit point with the calculated rotation
                 GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation, transform);
+
+                lastSpawnPosition = spawnPosition;
             }
         }
+    }
+
+    private bool IsPositionOccupied(Vector3 position)
+    {
+        Collider[] colliders = Physics.OverlapSphere(position, collisionRadius);
+
+        //Debug.Log("Colliders detected: " + colliders.Length);
+
+        foreach (Collider collider in colliders)
+        {
+            //Debug.Log("Detected object: " + collider.gameObject.name + ", Tag: " + collider.gameObject.tag);
+
+            if (collider.CompareTag("Highlight") || collider.CompareTag("Nature"))
+            {
+                Debug.Log("Collision detected with object tagged as 'Highlighted' or 'Nature'. Cannot place tree here.");
+                return true;
+            }
+        }
+
+        return false;
     }
 }

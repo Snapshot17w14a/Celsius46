@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1441272403147547923}
+  - component: {fileID: 5574018378073176469}
   m_Layer: 0
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Nature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,14 +25,37 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2255104060147285929}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000035762784}
-  m_LocalPosition: {x: -0, y: 0, z: -0.005}
+  m_LocalRotation: {x: 1.9184651e-13, y: 1, z: 0.0000004768371, w: -0.00000035762784}
+  m_LocalPosition: {x: 0, y: 0.00000013302457, z: -0.004999995}
   m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9191317201803228974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!136 &5574018378073176469
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2255104060147285929}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5857297
+  m_Height: 1.4481397
+  m_Direction: 2
+  m_Center: {x: 0.0019483917, y: -1.324276e-14, z: -0.75015074}
 --- !u!1 &2392536723337284856
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +69,7 @@ GameObject:
   - component: {fileID: 8104596255125156903}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Nature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +185,7 @@ GameObject:
   - component: {fileID: 363050473444773353}
   m_Layer: 0
   m_Name: Cone
-  m_TagString: Untagged
+  m_TagString: Nature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

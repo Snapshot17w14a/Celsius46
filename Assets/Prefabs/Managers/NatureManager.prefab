@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56dfbfea37f122048902bc74595ebbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagToHighlight: Highlight
   prefabToSpawn: {fileID: 2255104060147285929, guid: 0c6298f5b01e1c0448e68c7574a211b6,
     type: 3}
-  prefabLifetime: 10
+  minDistance: 0.25
+  collisionRadius: 0.15
