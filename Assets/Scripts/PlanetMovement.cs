@@ -5,10 +5,11 @@ public class PlanetMovement : MonoBehaviour
     [SerializeField] private float minDistance = -20f;
     [SerializeField] private float maxDistance = -40f;
 
-    [SerializeField] private GameObject planetCore;
+    [SerializeField] private float zoomSpeed = 1f;
 
-    [Range(0, 1)]
-    private float zoomValue = 0f;
+    private float targetZPos = -10;
+
+    [SerializeField] private GameObject planetCore;
 
     private void MoveCamera()
     {
@@ -18,8 +19,9 @@ public class PlanetMovement : MonoBehaviour
 
     private void ZoomCamera()
     {
-        Vector3 newPosition = transform.localPosition += new Vector3(0, 0, Input.mouseScrollDelta.y);
-        newPosition.z = Mathf.Clamp(newPosition.z, maxDistance, minDistance);
+        targetZPos = Mathf.Clamp(targetZPos + Input.mouseScrollDelta.y, maxDistance, minDistance);
+        Vector3 newPosition = transform.localPosition;
+        newPosition.z = Mathf.SmoothStep(newPosition.z, targetZPos, Time.deltaTime * zoomSpeed);
         transform.localPosition = newPosition;
     }
 

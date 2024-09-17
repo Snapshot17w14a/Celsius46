@@ -3,7 +3,12 @@ using TMPro;
 
 public class BarController : MonoBehaviour
 {
-    public enum PollutionType { Air, Soil, Water }
+    public enum PollutionType 
+    { 
+        Air      = 0,
+        Soil     = 1,
+        Water    = 2 
+    }
 
     [SerializeField] private float[] pollutionEndValues = new float[3];
     [SerializeField] private float[] pollutionValues = new float[3];
@@ -34,6 +39,7 @@ public class BarController : MonoBehaviour
 
     public void AddPollution(float amountToAdd, PollutionType pollutionType)
     {
-        pollutionBars[(int)pollutionType].SetFill((pollutionValues[(int)pollutionType] + amountToAdd) / pollutionEndValues[(int)pollutionType]);
+        //pollutionBars[(int)pollutionType].SetFill((pollutionValues[(int)pollutionType] + amountToAdd) / pollutionEndValues[(int)pollutionType]);
+        pollutionValues[(int)pollutionType] += amountToAdd;
     }
 }
