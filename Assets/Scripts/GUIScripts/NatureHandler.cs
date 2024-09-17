@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class NatureHandler : MonoBehaviour
 {
-    [SerializeField] private string tagToHighlight = "Highlight";  // Tag of objects to interact with
     [SerializeField] private GameObject prefabToSpawn;             // Prefab to spawn at the clicked object's location
     [SerializeField] private float prefabLifetime = 10f;           // Lifetime of the prefab before it gets destroyed
 
