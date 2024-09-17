@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class NatureHandler : MonoBehaviour
 {
     [SerializeField] private GameObject prefabToSpawn;             // Prefab to spawn at the clicked object's location
-    [SerializeField] private float prefabLifetime = 10f;           // Lifetime of the prefab before it gets destroyed
 
     private bool isInNaturePlacementMode = false;  // Toggle state to track nature placement mode
 
@@ -40,7 +39,7 @@ public class NatureHandler : MonoBehaviour
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
                 // Instantiate the prefab at the hit point with the calculated rotation
-                GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
+                GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation, transform);
             }
         }
     }
