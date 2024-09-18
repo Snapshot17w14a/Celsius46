@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class NatureHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabToSpawn;  // Prefab to spawn at the clicked object's location
+    [SerializeField] private GameObject prefabToSpawnOnWater;  // Prefab to spawn at the clicked object's location
+    [SerializeField] private GameObject prefabToSpawnOnLand;  // Prefab to spawn at the clicked object's location
+    [SerializeField] private GameObject prefabToSpawnSunflower; // Prefab to spawn at the clicked object's location
     [SerializeField] private float minDistance = 2.0f;  // Minimum distance between placed objects
     [SerializeField] private float collisionRadius = 2.0f;  // Radius to check for collisions (make sure it's large enough)
     [SerializeField] private Texture2D planetTexture;  // Texture to sample for nature placement
@@ -15,6 +17,7 @@ public class NatureHandler : MonoBehaviour
     [SerializeField] private Color waterColor;
     [SerializeField] private Color snowColor;
 
+    private bool sunFlowerMode = false;
     private bool isInNaturePlacementMode = false;  // Toggle state to track nature placement mode
     private bool isDragging = false;  // Tracks if the mouse button is held down
     private Vector3 lastSpawnPosition = Vector3.positiveInfinity;  // Stores the position of the last spawned object
@@ -54,6 +57,11 @@ public class NatureHandler : MonoBehaviour
             isDragging = false;
             lastSpawnPosition = Vector3.positiveInfinity;
         }
+
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
+        {
+            sunFlowerMode = !sunFlowerMode;
+        }
     }
 
     private void PlaceAtClick()
@@ -73,16 +81,37 @@ public class NatureHandler : MonoBehaviour
             Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
             Debug.Log(pixelColor.ToString());
 
-            if (prefabToSpawn != null
+            if (prefabToSpawnOnWater != null
                 && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
-                && !IsPositionOccupied(spawnPosition) && CanPlacePlant(pixelColor, PlantType.Seaweed)) //Planttype is hardcoded to Tree for now
+                && !IsPositionOccupied(spawnPosition) && CanPlacePlant(pixelColor, PlantType.Seaweed))
             {
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
-                Instantiate(prefabToSpawn, spawnPosition, spawnRotation, transform);
+                Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform);
 
                 lastSpawnPosition = spawnPosition;
+            }
+            else if (prefabToSpawnOnLand != null
+                && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
+                && !IsPositionOccupied(spawnPosition) && (CanPlacePlant(pixelColor, PlantType.Tree) || CanPlacePlant(pixelColor, PlantType.Sunflower)))
+            {
+                Vector3 directionToCenter = Vector3.zero - spawnPosition;
+                Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
+
+                if (!sunFlowerMode)
+                {
+                    Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform);
+
+                    lastSpawnPosition = spawnPosition;
+                }
+                else
+                {
+                    Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform);
+
+                    lastSpawnPosition = spawnPosition;
+                }
+                
             }
         }
     }
