@@ -10,4 +10,8 @@ public class BuildingValues : ScriptableObject
     public float airPollution;
     public float soilPollution;
     public float waterPollution;
+
+    [Header("Population values for spawning")]
+    public int minPopulation;
+    public int maxPopulation;
 }

@@ -121,9 +121,9 @@ public class HighlightObjects : MonoBehaviour
                             GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
 
                             // Start coroutine to handle prefab lifetime
-                            StartCoroutine(DestroyAfterTime(spawnedPrefab, prefabLifetime));
+                            Destroy(spawnedPrefab, prefabLifetime);
 
-                            Destroy(clickedObject);
+                            Destroy(clickedObject.transform.parent.transform.parent.gameObject);
                         }
                     }
                 }
@@ -147,9 +147,9 @@ public class HighlightObjects : MonoBehaviour
     }
 
     // Coroutine to destroy prefab after a certain time
-    private IEnumerator<WaitForSeconds> DestroyAfterTime(GameObject obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(obj);
-    }
+    //private IEnumerator<WaitForSeconds> DestroyAfterTime(GameObject obj, float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    Destroy(obj);
+    //}
 }

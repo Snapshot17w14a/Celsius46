@@ -16,6 +16,21 @@ public class PopulationSimulator : MonoBehaviour
     private int population = 10;
     private int maxPopulation = 0;
 
+    public int GetPopulation => population;
+
+    private static PopulationSimulator instance;
+    public static PopulationSimulator Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<PopulationSimulator>();
+            }
+            return instance;
+        }
+    }
+
     void Start()
     {
         StartCoroutine(SimulationStep());
@@ -71,5 +86,10 @@ public class PopulationSimulator : MonoBehaviour
             }
             barController.AddPollution(pollutionToAdd, (BarController.PollutionType)i);
         }
+    }
+
+    public void SubtractMaxPopulation(int amount)
+    {
+        maxPopulation -= amount;
     }
 }

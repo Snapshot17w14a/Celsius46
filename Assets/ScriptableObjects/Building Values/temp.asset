@@ -16,3 +16,5 @@ MonoBehaviour:
   airPollution: 50
   soilPollution: 100
   waterPollution: 250
+  minPopulation: 0
+  maxPopulation: 250

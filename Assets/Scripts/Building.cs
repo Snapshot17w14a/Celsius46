@@ -5,6 +5,7 @@ public class Building : MonoBehaviour
     [SerializeField] private BuildingValues buildingValues;
 
     public int GetUpkeepValue => buildingValues.popultionSupport;
+    public (int, int) GetPopulationValues => (buildingValues.minPopulation, buildingValues.maxPopulation);
     public float GetPollutionValues(BarController.PollutionType pollutionType)
     {
         return (int)pollutionType switch
@@ -14,5 +15,10 @@ public class Building : MonoBehaviour
             2 => buildingValues.waterPollution,
             _ => 0
         };
+    }
+
+    private void OnDestroy()
+    {
+        PopulationSimulator.Instance.SubtractMaxPopulation(buildingValues.popultionSupport);
     }
 }
