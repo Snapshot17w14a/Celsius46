@@ -75,7 +75,7 @@ public class NatureHandler : MonoBehaviour
 
             if (prefabToSpawn != null
                 && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
-                && !IsPositionOccupied(spawnPosition) && CanPlacePlant(pixelColor, PlantType.Seaweed)) //Planttype is hardcoded to Tree for now
+                && !IsPositionOccupied(spawnPosition) && CanPlacePlant(pixelColor, PlantType.Tree)) //Planttype is hardcoded to Tree for now
             {
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
@@ -120,8 +120,8 @@ public class NatureHandler : MonoBehaviour
 
     bool CanPlacePlant(Color pixelColor, PlantType plantType)
     {
-        bool isLand = pixelColor == landColor || pixelColor == snowColor;
-        bool isWater = pixelColor == waterColor;
+        bool isLand = CompareColors(pixelColor, landColor) || CompareColors(pixelColor, snowColor);
+        bool isWater = CompareColors(pixelColor, waterColor);
         Debug.Log($"land {isLand}, water {isWater}.");
 
         return plantType switch
@@ -131,5 +131,12 @@ public class NatureHandler : MonoBehaviour
             PlantType.Sunflower => isLand,
             _ => false,
         };
+    }
+
+    bool CompareColors(Color a, Color b, float tolerance = 0.05f)
+    {
+        return Mathf.Abs(a.r - b.r) < tolerance &&
+               Mathf.Abs(a.g - b.g) < tolerance &&
+               Mathf.Abs(a.b - b.b) < tolerance;
     }
 }
