@@ -10,7 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1441272403147547923}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 5574018378073176469}
+=======
+  - component: {fileID: 7970080303329326877}
+>>>>>>> Stashed changes
 =======
   - component: {fileID: 7970080303329326877}
 >>>>>>> Stashed changes
@@ -38,8 +42,13 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!136 &5574018378073176469
 CapsuleCollider:
+=======
+--- !u!65 &7970080303329326877
+BoxCollider:
+>>>>>>> Stashed changes
 =======
 --- !u!65 &7970080303329326877
 BoxCollider:
@@ -61,11 +70,17 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   serializedVersion: 2
   m_Radius: 0.5857297
   m_Height: 1.4481397
   m_Direction: 2
   m_Center: {x: 0.0019483917, y: -1.324276e-14, z: -0.75015074}
+=======
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: -0.7}
+>>>>>>> Stashed changes
 =======
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}

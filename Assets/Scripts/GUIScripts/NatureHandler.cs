@@ -8,9 +8,8 @@ public class NatureHandler : MonoBehaviour
     [SerializeField] private GameObject prefabToSpawn;  // Prefab to spawn at the clicked object's location
     [SerializeField] private float minDistance = 2.0f;  // Minimum distance between placed objects
     [SerializeField] private float collisionRadius = 2.0f;  // Radius to check for collisions (make sure it's large enough)
-=======
     [SerializeField] private GameObject prefabToSpawn;             // Prefab to spawn at the clicked object's location
->>>>>>> Stashed changes
+    [SerializeField] private float prefabLifetime = 10f;           // Lifetime of the prefab before it gets destroyed
 
     private bool isInNaturePlacementMode = false;  // Toggle state to track nature placement mode
     private bool isDragging = false;  // Tracks if the mouse button is held down
@@ -71,7 +70,6 @@ public class NatureHandler : MonoBehaviour
                 // Instantiate the prefab at the hit point with the calculated rotation
                 GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation, transform);
 
->>>>>>> Stashed changes
             }
         }
     }
