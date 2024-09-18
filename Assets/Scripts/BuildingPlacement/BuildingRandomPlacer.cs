@@ -36,20 +36,20 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
         while (isSpawning)
         {
-            Debug.Log("Spawning prefab " + (++spawnedPrefabs) + " of " + numberOfPrefabs);
+            //Debug.Log("Spawning prefab " + (++spawnedPrefabs) + " of " + numberOfPrefabs);
 
             SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
 
             yield return new WaitForSeconds(spawnInterval);
         }
 
-        Debug.Log("Finished spawning all prefabs.");
+        //Debug.Log("Finished spawning all prefabs.");
     }
 
     public void SpawnPrefab(BuildingType buildingType)
     {
         int prefabIndex = (int)buildingType;
-        Debug.Log("Spawning prefab index: " + prefabIndex);
+        //Debug.Log("Spawning prefab index: " + prefabIndex);
 
         Vector3 randomPosition = Random.onUnitSphere * planetRadius;
 
@@ -57,7 +57,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
         // Check if a specific prefab index was passed
         prefabToSpawn = spawnableBuildings[prefabIndex];
-        Debug.Log("Spawning specific prefab: " + prefabToSpawn + " at position " + randomPosition);
+        //Debug.Log("Spawning specific prefab: " + prefabToSpawn + " at position " + randomPosition);
 
         //else
         //{
@@ -89,6 +89,6 @@ public class PlanetPrefabSpawner : MonoBehaviour
     public void StopSpawning()
     {
         isSpawning = false;
-        Debug.Log("Spawning stopped.");
+        //Debug.Log("Spawning stopped.");
     }
 }
