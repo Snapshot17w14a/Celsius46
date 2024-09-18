@@ -6209,9 +6209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pollutionEndValues:
-  - 100000
-  - 100000
-  - 100000
+  - 10000
+  - 10000
+  - 10000
   pollutionValues:
   - 0
   - 0
