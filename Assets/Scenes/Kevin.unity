@@ -460,7 +460,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: -5.717581e-33, z: 4.5904e-41, w: 9.403955e-38}
+  m_BoundingSphereOverride: {x: -11, y: 6e-44, z: 1.77e-43, w: 3.0191e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -6893,6 +6893,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 319722140}
   - {fileID: 1019916556214091032}
+  - {fileID: 2387109913151460253}
   - {fileID: 1812386506}
   - {fileID: 810365939}
   - {fileID: 1678473821}
@@ -6902,4 +6903,3 @@ SceneRoots:
   - {fileID: 1723671720}
   - {fileID: 1071604313}
   - {fileID: 1452210674}
-  - {fileID: 2387109913151460253}

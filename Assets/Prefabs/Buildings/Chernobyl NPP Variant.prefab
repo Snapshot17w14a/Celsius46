@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingValues: {fileID: 11400000, guid: 8c17b24f3d714ec4facb1f173e3ee60b, type: 2}
+  infoCard: {fileID: 0}
 --- !u!1 &932350937065374416
 GameObject:
   m_ObjectHideFlags: 0
