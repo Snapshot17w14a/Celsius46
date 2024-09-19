@@ -460,7 +460,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.4e-44, z: 3.998e-42, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 10.000001, z: 8, w: -10.666667}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10889,9 +10889,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
-      propertyPath: planetRadius
-      value: 10
+      propertyPath: planetMesh
+      value: 
+      objectReference: {fileID: 4068373912626513877, guid: 67e52cb92ad5e2344be2a158eb40223a,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landColor.b
+      value: 0.24705882
       objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landColor.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landColor.r
+      value: 0.3882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: snowColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: snowColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: snowColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: planetRadius
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: waterColor.b
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: waterColor.g
+      value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: waterColor.r
+      value: 0.30980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: planetTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 0502742e8dfb6e740a36099b928b302f, type: 3}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
       propertyPath: spawnInterval
@@ -10904,9 +10960,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
+      propertyPath: landBuildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: waterBuildings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
       propertyPath: buildingPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[0]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: a63be6190a9f4ab42b1fc8444ff252dc,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: waterBuildings.Array.data[0]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: f702c1adf9244b74ba424ba940891dd8,
+        type: 3}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
       propertyPath: buildingPrefabs.Array.data[0]
@@ -11224,7 +11302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   simulationIdleTime: 1
   childChance: 20
-  populationForNewBuilding: 0
+  populationForNewBuilding: 95
   populationDisplay: {fileID: 1940018688}
   barController: {fileID: 1942802083}
 --- !u!4 &1946612830
