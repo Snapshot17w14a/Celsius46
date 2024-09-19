@@ -27,10 +27,32 @@ public class HighlightObjects : MonoBehaviour
             isHighlighted = !isHighlighted;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (isHighlighted)
+            {
+                ResetObjectsMaterial();
+                isHighlighted = false;  // Ensure that highlight mode is turned off
+            }
+        }
+
+
         if (Input.GetMouseButtonDown(0)) // Left mouse button
         {
             DetectHighlightedObject();
         }
+    }
+
+    // Add a method to check if highlight mode is active
+    public bool IsHighlightModeActive()
+    {
+        return isHighlighted;
+    }
+
+    // Add a method to highlight newly spawned objects
+    public void HighlightNewObject(GameObject newObject)
+    {
+        HighlightObject(newObject);
     }
 
     // Function to highlight objects with the specified tag
@@ -41,21 +63,29 @@ public class HighlightObjects : MonoBehaviour
 
         foreach (GameObject obj in objectsToHighlight)
         {
-            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            HighlightObject(obj); // Use HighlightObject to apply highlight
+        }
+    }
 
-            foreach (Renderer renderer in renderers)
+    // Function to highlight a single object
+    private void HighlightObject(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer.materials.Length > 1)
             {
-                if (renderer.materials.Length > 1)
+                // Store the original materials only if they are not already stored
+                if (!originalMaterials.ContainsKey(obj))
                 {
-                    if (!originalMaterials.ContainsKey(obj))
-                    {
-                        originalMaterials[obj] = renderer.materials;
-                    }
-
-                    Material[] materials = renderer.materials;
-                    materials[1] = highlightMaterial;
-                    renderer.materials = materials;
+                    originalMaterials[obj] = renderer.materials;
                 }
+
+                // Replace the second material with the highlight material
+                Material[] materials = renderer.materials;
+                materials[1] = highlightMaterial;
+                renderer.materials = materials;
             }
         }
     }
@@ -120,13 +150,40 @@ public class HighlightObjects : MonoBehaviour
 
                             GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
 
+                            // If we are in highlight mode, highlight the newly spawned prefab
+                            if (isHighlighted)
+                            {
+                                // Track and highlight the prefab
+                                TrackAndHighlightNewPrefab(spawnedPrefab);
+                            }
+
                             // Start coroutine to handle prefab lifetime
                             Destroy(spawnedPrefab, prefabLifetime);
 
+                            // Destroy the clicked object
                             Destroy(clickedObject.transform.parent.transform.parent.gameObject);
                         }
                     }
                 }
+            }
+        }
+    }
+
+    // Function to track and highlight a newly spawned prefab
+    private void TrackAndHighlightNewPrefab(GameObject spawnedPrefab)
+    {
+        // Add the prefab to the dictionary with its current materials for tracking
+        Renderer[] renderers = spawnedPrefab.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            if (!originalMaterials.ContainsKey(spawnedPrefab) && renderer.materials.Length > 1)
+            {
+                originalMaterials[spawnedPrefab] = renderer.materials;
+
+                // Apply the highlight material immediately
+                Material[] materials = renderer.materials;
+                materials[1] = highlightMaterial;
+                renderer.materials = materials;
             }
         }
     }
@@ -139,17 +196,9 @@ public class HighlightObjects : MonoBehaviour
         }
 
         // Compare properties like color or shader name if needed
-        //bool sameColor = material.color == highlightMaterial.color;
         bool sameShader = material.shader == highlightMaterial.shader;
 
         // Adjust the comparison logic based on your needs
         return sameShader;
     }
-
-    // Coroutine to destroy prefab after a certain time
-    //private IEnumerator<WaitForSeconds> DestroyAfterTime(GameObject obj, float time)
-    //{
-    //    yield return new WaitForSeconds(time);
-    //    Destroy(obj);
-    //}
 }

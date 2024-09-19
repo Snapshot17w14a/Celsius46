@@ -17,7 +17,7 @@ public class PopulationSimulator : MonoBehaviour
     [SerializeField] private BarController barController;
 
     private int population = 10;
-    private int maxPopulation = 10;
+    private int maxPopulation = 0;
 
     public int GetPopulation => population;
 
@@ -43,7 +43,6 @@ public class PopulationSimulator : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log($"pop: {population} maxPop: {maxPopulation}");
             //Get all current buildings
             var buildings = FindObjectsByType<Building>(FindObjectsSortMode.None);
 

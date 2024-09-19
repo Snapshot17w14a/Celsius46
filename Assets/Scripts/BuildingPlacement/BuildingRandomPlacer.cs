@@ -92,8 +92,19 @@ public class PlanetPrefabSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location)
+    private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location, int retryCount = 5)
     {
+        // Check for collision with objects tagged as "Nature" or "Highlight"
+        if (IsCollidingWithTaggedObjects(position))
+        {
+            if (retryCount > 0)
+            {
+                // Try again with a new random position
+                SpawnRandomPrefab(); // Retry spawning at a new location
+            }
+            return; // Exit if retries are exhausted or we can't place it
+        }
+
         Building buildingPrefab;
 
         // Choose a building prefab from the appropriate array based on the location (land or water)
@@ -110,7 +121,35 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
         // Instantiate the chosen building at the hit point
         Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
+
+        // Notify the highlight system if it's currently active
+        HighlightObjects highlightSystem = FindObjectOfType<HighlightObjects>();
+        if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
+        {
+            highlightSystem.HighlightNewObject(newBuilding.gameObject);
+        }
     }
+
+
+    /// <summary>
+    /// Check if there's any object with "Nature" or "Highlight" tag within a certain radius of the position.
+    /// </summary>
+    private bool IsCollidingWithTaggedObjects(Vector3 position)
+    {
+        float checkRadius = 1.0f; // Adjust this radius as needed
+        Collider[] hitColliders = Physics.OverlapSphere(position, checkRadius);
+
+        foreach (var collider in hitColliders)
+        {
+            if (collider.CompareTag("Nature") || collider.CompareTag("Highlight"))
+            {
+                return true; // There's a collision with a tagged object
+            }
+        }
+
+        return false; // No collisions detected
+    }
+
 
     /// <summary>
     /// Determines whether the hit point is on land or water based on the texture color.
