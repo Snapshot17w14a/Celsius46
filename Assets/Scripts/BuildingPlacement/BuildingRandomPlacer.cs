@@ -16,13 +16,25 @@ public class PlanetPrefabSpawner : MonoBehaviour
     [SerializeField] private Color waterColor;
     [SerializeField] private Color snowColor;
 
+    private readonly List<Building> spawnableBuildings = new();
+
+    private static PlanetPrefabSpawner instance;
+    public static PlanetPrefabSpawner Instance
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<PlanetPrefabSpawner>();
+            return instance;
+        }
+    }
+
     private enum BuildingLocation
     {
         Land,
         Water,
     }
 
-    public enum LandBuildingType
+    public enum BuildingType
     {
         PowerPlant = 0, // Example for land building
     }
@@ -32,8 +44,13 @@ public class PlanetPrefabSpawner : MonoBehaviour
         WaterPowerPlant = 0, // Example for water building
     }
 
+    public void SpawnRandomPrefab()
+    {
+        SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
+    }
+
     // This method will now be called externally from a different script
-    public void SpawnPrefab()
+    public void SpawnPrefab(BuildingType buildingType)
     {
         // Generate a random point on a sphere to cast the ray from
         Vector3 randomPoint = Random.onUnitSphere * planetRadius;
