@@ -44,6 +44,26 @@ public class PlanetPrefabSpawner : MonoBehaviour
         WaterPowerPlant = 0, // Example for water building
     }
 
+    private void Start()
+    {
+        UpdateSpawnableBuidings();
+        SpawnRandomPrefab();
+    }
+
+    private void UpdateSpawnableBuidings()
+    {
+        var population = PopulationSimulator.Instance.GetPopulation;
+        foreach (var building in landBuildings) CheckBuildingValues(building, population);
+        foreach (var building in waterBuildings) CheckBuildingValues(building, population);
+    }
+
+    private void CheckBuildingValues(Building building, int population)
+    {
+        var populationValues = building.GetPopulationValues;
+        if (!spawnableBuildings.Contains(building) && population >= populationValues.Item1 && population <= populationValues.Item2) spawnableBuildings.Add(building);
+        else if (spawnableBuildings.Contains(building) && population <= populationValues.Item1 && population >= populationValues.Item2) spawnableBuildings.Remove(building);
+    }
+
     public void SpawnRandomPrefab()
     {
         SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
@@ -89,14 +109,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
         }
 
         // Instantiate the chosen building at the hit point
-        Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.identity);
-
-        // Align the prefab to face away from the planet's center
-        Vector3 directionFromCenter = (newBuilding.transform.position - Vector3.zero).normalized;
-        newBuilding.transform.rotation = Quaternion.LookRotation(directionFromCenter);
-
-        // Parent the building to the planet for proper organization
-        newBuilding.transform.parent = transform;
+        Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
     }
 
     /// <summary>
