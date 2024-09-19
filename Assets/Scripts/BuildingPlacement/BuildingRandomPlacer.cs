@@ -14,6 +14,16 @@ public class PlanetPrefabSpawner : MonoBehaviour
     private bool isSpawning = true;
     private readonly List<Building> spawnableBuildings = new();
 
+    private static PlanetPrefabSpawner instance;
+    public static PlanetPrefabSpawner Instance
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<PlanetPrefabSpawner>();
+            return instance;
+        }
+    }
+
     public enum BuildingType
     {
         PowerPlant       = 0,
@@ -32,8 +42,6 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
     private IEnumerator SpawnPrefabsWithInterval()
     {
-        int spawnedPrefabs = 0;
-
         while (isSpawning)
         {
             //Debug.Log("Spawning prefab " + (++spawnedPrefabs) + " of " + numberOfPrefabs);
@@ -42,8 +50,12 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(spawnInterval);
         }
-
         //Debug.Log("Finished spawning all prefabs.");
+    }
+
+    public void SpawnRandomPrefab()
+    {
+       SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
     }
 
     public void SpawnPrefab(BuildingType buildingType)
