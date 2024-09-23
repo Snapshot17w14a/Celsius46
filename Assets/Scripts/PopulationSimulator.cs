@@ -15,6 +15,7 @@ public class PopulationSimulator : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI populationDisplay;
     [SerializeField] private BarController barController;
+    [SerializeField] private Material planetMaterial;
 
     private int population = 10;
     private int maxPopulation = 0;
@@ -52,8 +53,9 @@ public class PopulationSimulator : MonoBehaviour
             //Set the population based on the potential population growth
             population = Mathf.Clamp(population += GetPotentionPopulation(), 0, maxPopulation);
 
-            //Add the pollution produced by all buindings
+            //Add the pollution produced by all buindings and update the planet blend
             AddPollution(buildings);
+            UpdatePlanetBlend();
 
             //Display the population
             populationDisplay.text = "Population: " + population;
@@ -92,6 +94,11 @@ public class PopulationSimulator : MonoBehaviour
             }
             barController.AddPollution(pollutionToAdd, (BarController.PollutionType)i);
         }
+    }
+
+    private void UpdatePlanetBlend()
+    {
+        planetMaterial.SetFloat("_CurrentStage", barController.pollutionProgress);
     }
 
     private bool NewBuildingRequired()

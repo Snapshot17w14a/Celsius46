@@ -11257,9 +11257,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pollutionEndValues:
-  - 100000
-  - 100000
-  - 100000
+  - 10000
+  - 10000
+  - 10000
   pollutionValues:
   - 0
   - 0
@@ -11268,8 +11268,8 @@ MonoBehaviour:
   - {fileID: 343978112}
   - {fileID: 2015156037}
   - {fileID: 2069051772}
-  minTemperature: 25
-  maxTemperature: 125
+  minTemperature: 14
+  maxTemperature: 46
   cumulativeTemperature: {fileID: 610978254}
 --- !u!1 &1946612828
 GameObject:
@@ -11305,6 +11305,7 @@ MonoBehaviour:
   populationForNewBuilding: 95
   populationDisplay: {fileID: 1940018688}
   barController: {fileID: 1942802083}
+  planetMaterial: {fileID: 2100000, guid: 56ba3dfd1173a4c4fb075b37c6739a06, type: 2}
 --- !u!4 &1946612830
 Transform:
   m_ObjectHideFlags: 0
@@ -11733,6 +11734,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5168299104549542573, guid: 3be075b2b1b22a04a93c006a2114457e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 56ba3dfd1173a4c4fb075b37c6739a06, type: 2}
     - target: {fileID: 6337216117957386690, guid: 3be075b2b1b22a04a93c006a2114457e,
         type: 3}
       propertyPath: m_LocalPosition.x
