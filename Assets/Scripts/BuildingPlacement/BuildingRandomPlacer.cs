@@ -47,11 +47,11 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
     private void Start()
     {
-        UpdateSpawnableBuidings();
-        SpawnRandomPrefab();
+        UpdateSpawnableBuildings();
+        SpawnRandomPrefab(); // For testing; in the final version, this may be triggered externally
     }
 
-    private void UpdateSpawnableBuidings()
+    private void UpdateSpawnableBuildings()
     {
         var population = PopulationSimulator.Instance.GetPopulation;
         foreach (var building in landBuildings) CheckBuildingValues(building, population);
@@ -61,51 +61,76 @@ public class PlanetPrefabSpawner : MonoBehaviour
     private void CheckBuildingValues(Building building, int population)
     {
         var populationValues = building.GetPopulationValues;
-        if (!spawnableBuildings.Contains(building) && population >= populationValues.Item1 && population <= populationValues.Item2) spawnableBuildings.Add(building);
-        else if (spawnableBuildings.Contains(building) && population <= populationValues.Item1 && population >= populationValues.Item2) spawnableBuildings.Remove(building);
+        if (!spawnableBuildings.Contains(building) && population >= populationValues.Item1 && population <= populationValues.Item2)
+            spawnableBuildings.Add(building);
+        else if (spawnableBuildings.Contains(building) && (population < populationValues.Item1 || population > populationValues.Item2))
+            spawnableBuildings.Remove(building);
     }
 
     public void SpawnRandomPrefab()
     {
-        SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
+        if (spawnableBuildings.Count > 0)
+        {
+            SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
+        }
     }
 
     // This method will now be called externally from a different script
     public void SpawnPrefab(BuildingType buildingType)
     {
-        // Generate a random point on a sphere to cast the ray from
-        Vector3 randomPoint = Random.onUnitSphere * planetRadius;
-        Vector3 directionToCenter = -randomPoint.normalized;
+    // Generate a random point on a sphere to cast the ray from
+    Vector3 randomPoint = Random.onUnitSphere * planetRadius;
+    Vector3 directionToCenter = -randomPoint.normalized;
 
-        // Cast a ray from the random point towards the planet's center
-        if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
+    // Cast a ray from the random point towards the planet's center
+    if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
+    {
+        // Sample the texture at the hit point to determine land or water
+        Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
+        
+        // If UV is invalid, restart the process
+        if (uv == Vector2.negativeInfinity)
         {
-            // Sample the texture at the hit point to determine land or water
-            Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
-            Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
+            Debug.Log("Invalid UV detected. Restarting process");
+            SpawnPrefab(buildingType);
+            return;
+        }
 
-            // Determine if it's land or water and spawn the appropriate building
-            if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
+        Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
+
+        // Check for collision with nature or highlight objects
+        if (IsCollidingWithTaggedObjects(hit.point))
+        {
+            Debug.Log("Hit a nature or highlight object. Restarting process");
+            SpawnPrefab(buildingType);
+            return;
+        }
+
+        // Determine if it's land or water and spawn the appropriate building
+        if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
+        {
+            if (buildingLocation == BuildingLocation.Land)
             {
-                // Spawn a building at the hit point based on the location (land or water)
+                // Spawn a building at the hit point
                 SpawnBuildingAtPosition(hit.point, buildingLocation);
             }
+            else
+            {
+                Debug.Log("Hit water. Restarting process");
+                SpawnPrefab(buildingType);
+            }
+        }
+        else
+        {
+            Debug.Log("Undetermined location. Restarting process");
+            SpawnPrefab(buildingType);
         }
     }
+}
 
-    private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location, int retryCount = 5)
+
+    private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location)
     {
-        // Check for collision with objects tagged as "Nature" or "Highlight"
-        if (IsCollidingWithTaggedObjects(position))
-        {
-            if (retryCount > 0)
-            {
-                // Try again with a new random position
-                SpawnRandomPrefab(); // Retry spawning at a new location
-            }
-            return; // Exit if retries are exhausted or we can't place it
-        }
-
         Building buildingPrefab;
 
         // Choose a building prefab from the appropriate array based on the location (land or water)
@@ -115,6 +140,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
             buildingPrefab = landBuildings[Random.Range(0, landBuildings.Length)];
             Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
 
+            // Highlight the newly spawned building if the highlight system is active
             HighlightObjects highlightSystem = FindObjectOfType<HighlightObjects>();
             if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
             {
@@ -123,11 +149,10 @@ public class PlanetPrefabSpawner : MonoBehaviour
         }
         // else // God ignore this comment gore
         {
-            // Choose a random water building from the array
+            // In case water-based buildings are enabled later
             // buildingPrefab = waterBuildings[Random.Range(0, waterBuildings.Length)];
         }
     }
-
 
     /// <summary>
     /// Check if there's any object with "Nature" or "Highlight" tag within a certain radius of the position.
@@ -147,7 +172,6 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
         return false; // No collisions detected
     }
-
 
     /// <summary>
     /// Determines whether the hit point is on land or water based on the texture color.
@@ -185,12 +209,40 @@ public class PlanetPrefabSpawner : MonoBehaviour
     /// <summary>
     /// Gets UV coordinates from the hit point on the mesh.
     /// </summary>
+    /// <summary>
+    /// Gets UV coordinates from the hit point on the mesh.
+    /// </summary>
     private Vector2 GetUVFromHit(Mesh mesh, int triangleIndex, RaycastHit hit)
     {
-        Vector2 uv1 = mesh.uv[mesh.triangles[triangleIndex * 3]];
-        Vector2 uv2 = mesh.uv[mesh.triangles[triangleIndex * 3 + 1]];
-        Vector2 uv3 = mesh.uv[mesh.triangles[triangleIndex * 3 + 2]];
+        // Validate that the mesh has UVs and enough triangles
+        if (mesh.uv.Length == 0)
+        {
+            Debug.LogError("Mesh does not have UVs. Restarting process...");
+            return Vector2.negativeInfinity;
+        }
 
+        int triangleArrayLength = mesh.triangles.Length / 3;  // Total triangles
+        if (triangleIndex < 0 || triangleIndex >= triangleArrayLength)
+        {
+            Debug.LogError("Triangle index is out of bounds. Restarting process...");
+            return Vector2.negativeInfinity;
+        }
+
+        int i1 = mesh.triangles[triangleIndex * 3];
+        int i2 = mesh.triangles[triangleIndex * 3 + 1];
+        int i3 = mesh.triangles[triangleIndex * 3 + 2];
+
+        if (i1 >= mesh.uv.Length || i2 >= mesh.uv.Length || i3 >= mesh.uv.Length)
+        {
+            Debug.LogError("Triangle vertices are out of UV array bounds. Restarting process...");
+            return Vector2.negativeInfinity;
+        }
+
+        Vector2 uv1 = mesh.uv[i1];
+        Vector2 uv2 = mesh.uv[i2];
+        Vector2 uv3 = mesh.uv[i3];
+
+        // Use barycentric coordinates to calculate the UV coordinate at the hit point
         return uv1 * hit.barycentricCoordinate.x + uv2 * hit.barycentricCoordinate.y + uv3 * hit.barycentricCoordinate.z;
     }
 }
