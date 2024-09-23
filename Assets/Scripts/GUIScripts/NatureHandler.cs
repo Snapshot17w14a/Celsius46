@@ -14,8 +14,9 @@ public class NatureHandler : MonoBehaviour
 
     [Header("Colors for the placement limiter")]
     [SerializeField] private Color landColor;
-    [SerializeField] private Color waterColor;
+    [SerializeField] private Color sandColor;
     [SerializeField] private Color snowColor;
+    [SerializeField] private Color waterColor;
 
     private bool sunFlowerMode = false;
     private bool isInNaturePlacementMode = false;  // Toggle state to track nature placement mode
@@ -35,7 +36,15 @@ public class NatureHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             isInNaturePlacementMode = !isInNaturePlacementMode;
+            isDragging = false;  // Stop dragging when nature placement mode is toggled
             Debug.Log(isInNaturePlacementMode ? "Nature Placement Mode Activated!" : "Nature Placement Mode Deactivated!");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            isInNaturePlacementMode = false;
+            isDragging = false;  // Stop dragging when deactivating the mode
+            Debug.Log("Nature Placement Mode Deactivated!");
         }
 
         // Start placing objects on mouse drag
@@ -46,7 +55,7 @@ public class NatureHandler : MonoBehaviour
         }
 
         // Continue placing objects while dragging
-        if (isDragging && Input.GetMouseButton(0))
+        if (isDragging && Input.GetMouseButton(0) && isInNaturePlacementMode)  // Ensure placement mode is still active
         {
             PlaceAtClick();
         }
@@ -64,8 +73,11 @@ public class NatureHandler : MonoBehaviour
         }
     }
 
+
     private void PlaceAtClick()
     {
+        if (PopulationSimulator.Instance.AvailableActionPoints == 0) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Planet")))
@@ -79,7 +91,6 @@ public class NatureHandler : MonoBehaviour
             uv = GetUVFromHit(planetMesh, triangleIndex, hit);
 
             Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
-            Debug.Log(pixelColor.ToString());
 
             if (prefabToSpawnOnWater != null
                 && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
@@ -88,8 +99,7 @@ public class NatureHandler : MonoBehaviour
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
-                Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform);
-
+                PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
                 lastSpawnPosition = spawnPosition;
             }
             else if (prefabToSpawnOnLand != null
@@ -101,14 +111,12 @@ public class NatureHandler : MonoBehaviour
 
                 if (!sunFlowerMode)
                 {
-                    Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform);
-
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
                     lastSpawnPosition = spawnPosition;
                 }
                 else
                 {
-                    Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform);
-
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
                     lastSpawnPosition = spawnPosition;
                 }
                 
@@ -149,7 +157,7 @@ public class NatureHandler : MonoBehaviour
 
     bool CanPlacePlant(Color pixelColor, PlantType plantType)
     {
-        bool isLand = CompareColors(pixelColor, landColor) || CompareColors(pixelColor, snowColor);
+        bool isLand = CompareColors(pixelColor, landColor) || CompareColors(pixelColor, snowColor) || CompareColors(pixelColor, sandColor);
         bool isWater = CompareColors(pixelColor, waterColor);
         Debug.Log($"land {isLand}, water {isWater}.");
 

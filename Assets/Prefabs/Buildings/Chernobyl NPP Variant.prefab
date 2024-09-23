@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingValues: {fileID: 11400000, guid: 8c17b24f3d714ec4facb1f173e3ee60b, type: 2}
-  infoCard: {fileID: 0}
 --- !u!1 &932350937065374416
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +96,7 @@ Transform:
   m_GameObject: {fileID: 932350937065374416}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710707, y: 0.0000005662441, z: -0.0000006770972, w: 0.7071065}
-  m_LocalPosition: {x: 0.04381139, y: -0.021951726, z: -0.06346681}
+  m_LocalPosition: {x: 0.044, y: 0.11, z: -0.063}
   m_LocalScale: {x: 3.0310736, y: 3.0310736, z: 3.0310736}
   m_ConstrainProportionsScale: 0
   m_Children: []

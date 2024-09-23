@@ -4,91 +4,193 @@ using UnityEngine;
 
 public class PlanetPrefabSpawner : MonoBehaviour
 {
-    [SerializeField] private Building[] buildingPrefabs; // Serialize to allow editing in the Inspector
-    [SerializeField] private float planetRadius = 10f; // Serialize for Inspector adjustment
-    [SerializeField] private int numberOfPrefabs = 10; // Serialize for Inspector adjustment
-    [SerializeField] private float spawnInterval = 1f; // Serialize for Inspector adjustment
+    [SerializeField] private Building[] landBuildings;  // Array for land-based buildings
+    // [SerializeField] private Building[] waterBuildings; // Array for water-based buildings
+    [SerializeField] private float planetRadius = 10f;
 
-    [SerializeField] private bool spawnOnInterval = false;
+    [SerializeField] private Texture2D planetTexture;  // Texture for detecting land/water
+    [SerializeField] private Mesh planetMesh;  // Mesh to sample UV coordinates
 
-    private bool isSpawning = true;
+    [Header("Colors for the placement limiter")]
+    [SerializeField] private Color landColor;
+    [SerializeField] private Color sandColor;
+    [SerializeField] private Color snowColor;
+    [SerializeField] private Color waterColor;
+
     private readonly List<Building> spawnableBuildings = new();
+
+    private static PlanetPrefabSpawner instance;
+    public static PlanetPrefabSpawner Instance
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<PlanetPrefabSpawner>();
+            return instance;
+        }
+    }
+
+    private enum BuildingLocation
+    {
+        Land,
+        Water,
+    }
 
     public enum BuildingType
     {
-        PowerPlant       = 0,
+        PowerPlant = 0, // Example for land building
     }
 
-    void Start()
+    public enum WaterBuildingType
+    {
+        WaterPowerPlant = 0, // Example for water building
+    }
+
+    private void Start()
     {
         UpdateSpawnableBuidings();
-        if (spawnOnInterval) StartCoroutine(SpawnPrefabsWithInterval());
-    }
-
-    private void Update()
-    {
-        UpdateSpawnableBuidings();
-    }
-
-    private IEnumerator SpawnPrefabsWithInterval()
-    {
-        int spawnedPrefabs = 0;
-
-        while (isSpawning)
-        {
-            //Debug.Log("Spawning prefab " + (++spawnedPrefabs) + " of " + numberOfPrefabs);
-
-            SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
-
-            yield return new WaitForSeconds(spawnInterval);
-        }
-
-        //Debug.Log("Finished spawning all prefabs.");
-    }
-
-    public void SpawnPrefab(BuildingType buildingType)
-    {
-        int prefabIndex = (int)buildingType;
-        //Debug.Log("Spawning prefab index: " + prefabIndex);
-
-        Vector3 randomPosition = Random.onUnitSphere * planetRadius;
-
-        Building prefabToSpawn;
-
-        // Check if a specific prefab index was passed
-        prefabToSpawn = spawnableBuildings[prefabIndex];
-        //Debug.Log("Spawning specific prefab: " + prefabToSpawn + " at position " + randomPosition);
-
-        //else
-        //{
-        //    // Randomly select a prefab from the array if no valid index is passed
-        //    prefabToSpawn = prefabs[Random.Range(0, prefabs.Length)];
-        //    Debug.Log("Spawning random prefab: " + prefabToSpawn.name + " at position " + randomPosition);
-        //}
-
-        Building newPrefab = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
-
-        // Align the prefab to face away from the planet's center (0,0,0)
-        Vector3 directionFromCenter = (newPrefab.transform.position - Vector3.zero).normalized; // Direction pointing away from the center
-        newPrefab.transform.rotation = Quaternion.LookRotation(directionFromCenter); // Set rotation to face away from the center
-
-        newPrefab.transform.parent = transform;
+        SpawnRandomPrefab();
     }
 
     private void UpdateSpawnableBuidings()
     {
         var population = PopulationSimulator.Instance.GetPopulation;
-        foreach (var building in buildingPrefabs)
+        foreach (var building in landBuildings) CheckBuildingValues(building, population);
+        // foreach (var building in waterBuildings) CheckBuildingValues(building, population);
+    }
+
+    private void CheckBuildingValues(Building building, int population)
+    {
+        var populationValues = building.GetPopulationValues;
+        if (!spawnableBuildings.Contains(building) && population >= populationValues.Item1 && population <= populationValues.Item2) spawnableBuildings.Add(building);
+        else if (spawnableBuildings.Contains(building) && population <= populationValues.Item1 && population >= populationValues.Item2) spawnableBuildings.Remove(building);
+    }
+
+    public void SpawnRandomPrefab()
+    {
+        SpawnPrefab((BuildingType)Mathf.RoundToInt(Random.Range(0, spawnableBuildings.Count)));
+    }
+
+    // This method will now be called externally from a different script
+    public void SpawnPrefab(BuildingType buildingType)
+    {
+        // Generate a random point on a sphere to cast the ray from
+        Vector3 randomPoint = Random.onUnitSphere * planetRadius;
+        Vector3 directionToCenter = -randomPoint.normalized;
+
+        // Cast a ray from the random point towards the planet's center
+        if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
         {
-            var populationValues = building.GetPopulationValues;
-            if(!spawnableBuildings.Contains(building) && population >= populationValues.Item1 && population <= populationValues.Item2) spawnableBuildings.Add(building);
-            else if (spawnableBuildings.Contains(building) && population <= populationValues.Item1 && population >= populationValues.Item2) spawnableBuildings.Remove(building);
+            // Sample the texture at the hit point to determine land or water
+            Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
+            Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
+
+            // Determine if it's land or water and spawn the appropriate building
+            if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
+            {
+                // Spawn a building at the hit point based on the location (land or water)
+                SpawnBuildingAtPosition(hit.point, buildingLocation);
+            }
         }
     }
 
-    public void StopSpawning()
+    private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location, int retryCount = 5)
     {
-        isSpawning = false;
-        //Debug.Log("Spawning stopped.");
+        // Check for collision with objects tagged as "Nature" or "Highlight"
+        if (IsCollidingWithTaggedObjects(position))
+        {
+            if (retryCount > 0)
+            {
+                // Try again with a new random position
+                SpawnRandomPrefab(); // Retry spawning at a new location
+            }
+            return; // Exit if retries are exhausted or we can't place it
+        }
+
+        Building buildingPrefab;
+
+        // Choose a building prefab from the appropriate array based on the location (land or water)
+        if (location == BuildingLocation.Land)
+        {
+            // Choose a random land building from the array
+            buildingPrefab = landBuildings[Random.Range(0, landBuildings.Length)];
+            Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
+
+            HighlightObjects highlightSystem = FindObjectOfType<HighlightObjects>();
+            if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
+            {
+                highlightSystem.HighlightNewObject(newBuilding.gameObject);
+            }
+        }
+        // else // God ignore this comment gore
+        {
+            // Choose a random water building from the array
+            // buildingPrefab = waterBuildings[Random.Range(0, waterBuildings.Length)];
+        }
+    }
+
+
+    /// <summary>
+    /// Check if there's any object with "Nature" or "Highlight" tag within a certain radius of the position.
+    /// </summary>
+    private bool IsCollidingWithTaggedObjects(Vector3 position)
+    {
+        float checkRadius = 1.0f; // Adjust this radius as needed
+        Collider[] hitColliders = Physics.OverlapSphere(position, checkRadius);
+
+        foreach (var collider in hitColliders)
+        {
+            if (collider.CompareTag("Nature") || collider.CompareTag("Highlight"))
+            {
+                return true; // There's a collision with a tagged object
+            }
+        }
+
+        return false; // No collisions detected
+    }
+
+
+    /// <summary>
+    /// Determines whether the hit point is on land or water based on the texture color.
+    /// </summary>
+    private bool CanPlaceBuilding(Color pixelColor, out BuildingLocation location)
+    {
+        bool isLand = CompareColors(pixelColor, landColor) || CompareColors(pixelColor, snowColor) || CompareColors(pixelColor, sandColor);
+        bool isWater = CompareColors(pixelColor, waterColor);
+
+        if (isLand)
+        {
+            location = BuildingLocation.Land;
+            return true;
+        }
+        else if (isWater)
+        {
+            location = BuildingLocation.Water;
+            return true;
+        }
+
+        location = BuildingLocation.Land; // Default to land if undetermined
+        return false;
+    }
+
+    /// <summary>
+    /// Compares two colors with a given tolerance.
+    /// </summary>
+    private bool CompareColors(Color a, Color b, float tolerance = 0.05f)
+    {
+        return Mathf.Abs(a.r - b.r) < tolerance &&
+               Mathf.Abs(a.g - b.g) < tolerance &&
+               Mathf.Abs(a.b - b.b) < tolerance;
+    }
+
+    /// <summary>
+    /// Gets UV coordinates from the hit point on the mesh.
+    /// </summary>
+    private Vector2 GetUVFromHit(Mesh mesh, int triangleIndex, RaycastHit hit)
+    {
+        Vector2 uv1 = mesh.uv[mesh.triangles[triangleIndex * 3]];
+        Vector2 uv2 = mesh.uv[mesh.triangles[triangleIndex * 3 + 1]];
+        Vector2 uv3 = mesh.uv[mesh.triangles[triangleIndex * 3 + 2]];
+
+        return uv1 * hit.barycentricCoordinate.x + uv2 * hit.barycentricCoordinate.y + uv3 * hit.barycentricCoordinate.z;
     }
 }

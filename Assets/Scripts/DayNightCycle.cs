@@ -4,13 +4,9 @@ public class DayNightCycle : MonoBehaviour
 {
     [SerializeField] private float dayDuration = 120f; // 2 minutes for a full day
 
-    void Start()
-    {
-
-    }
     void FixedUpdate()
     {
         float rotationSpeed = 360f / dayDuration;
-        transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
     }
 }
