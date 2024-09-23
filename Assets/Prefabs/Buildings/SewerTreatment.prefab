@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 2982752672139699148}
   - component: {fileID: 1044881883221661446}
   - component: {fileID: 1304277584128497688}
+  - component: {fileID: 5439334604454125221}
   m_Layer: 0
   m_Name: sewage_treatment_facility
   m_TagString: Highlight
@@ -170,11 +171,32 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4723010164368009254, guid: ab44dff3633d13d4ba6a45f644e81879, type: 3}
+--- !u!65 &5439334604454125221
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549474638344795859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0012027818, y: 0.0037355176, z: 0.00374314}
+  m_Center: {x: -0.00032560315, y: 0.0008684326, z: -0.0000024203307}
 --- !u!1 &3738646233580516207
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3804718632786990292}
   - component: {fileID: 1380885697912954910}
   - component: {fileID: 2315877076952168446}
+  - component: {fileID: 2480338226899078949}
   m_Layer: 0
   m_Name: chemical_plant
   m_TagString: Highlight
@@ -102,11 +103,32 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7994650926060863905, guid: b3697f65d82bb274d86f8581caaa4130, type: 3}
+--- !u!65 &2480338226899078949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588027932139274699}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0032378037, y: 0.002890429, z: 0.0030989815}
+  m_Center: {x: 0.000685446, y: 0.0012248161, z: 0.0008961805}
 --- !u!1 &755440616261487814
 GameObject:
   m_ObjectHideFlags: 0

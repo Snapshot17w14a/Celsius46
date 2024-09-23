@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 4653771694171750620}
   - component: {fileID: 7453866380466648086}
   - component: {fileID: 2077704459736400524}
+  - component: {fileID: 9141581248936274216}
   m_Layer: 0
   m_Name: coal_fired_power_plant
   m_TagString: Highlight
@@ -205,11 +206,32 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1550514412580984892, guid: 84500324e7ed3994faa68468943f32a9, type: 3}
+--- !u!65 &9141581248936274216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967106160844821955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0024197288, y: 0.0025958463, z: 0.0024870373}
+  m_Center: {x: 0.00034246154, y: -0.00086155615, z: 0.00004007702}
 --- !u!1001 &402641863901407804
 PrefabInstance:
   m_ObjectHideFlags: 0

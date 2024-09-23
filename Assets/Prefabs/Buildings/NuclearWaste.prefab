@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 5589461780452815473}
   - component: {fileID: 7671097643792320187}
   - component: {fileID: 6275567252103144612}
+  - component: {fileID: 8432811276279202957}
   m_Layer: 0
   m_Name: nuclear_waste_disposal_facility
   m_TagString: Highlight
@@ -164,7 +165,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: fca6aea7d1be0f844b90aa028021a1c0, type: 2}
-  - {fileID: 2100000, guid: fca6aea7d1be0f844b90aa028021a1c0, type: 2}
+  - {fileID: 2100000, guid: e5920c10917adf145868e99d6af60367, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,11 +204,32 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5894421597310714776, guid: b991878efe3d8524a83b79a5a7bf351d, type: 3}
+--- !u!65 &8432811276279202957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175663735562332014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0015090732, y: 0.0031913023, z: 0.00050000026}
+  m_Center: {x: -0.0005380301, y: -0.00080839894, z: 1.6115036e-11}
 --- !u!1001 &5280893159132704670
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ public class BarController : MonoBehaviour
     {
         float cumulativePollution = 0f;
         foreach (FillBar bar in pollutionBars) cumulativePollution += bar.FillAmount;
-        cumulativeTemperature.text = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * (cumulativePollution / 3f)).ToString() + " C°";
+        cumulativeTemperature.text = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * (cumulativePollution / 3f)).ToString() + " Cï¿½";
     }
 
     public void AddPollution(float amountToAdd, PollutionType pollutionType)
