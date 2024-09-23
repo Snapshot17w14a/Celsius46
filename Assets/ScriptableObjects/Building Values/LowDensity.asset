@@ -18,3 +18,5 @@ MonoBehaviour:
   waterPollution: 2
   minPopulation: 0
   maxPopulation: 1000
+  buildingName: House
+  buildingIcon: {fileID: 21300000, guid: 49809d53120775f4396745fc3e041733, type: 3}

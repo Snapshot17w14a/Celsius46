@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 85583307053160060}
   - component: {fileID: 5299835202999794511}
   - component: {fileID: 2057214593966253026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NuclearWaste
   m_TagString: Untagged
   m_Icon: {fileID: 0}

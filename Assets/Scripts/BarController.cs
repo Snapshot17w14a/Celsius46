@@ -13,7 +13,8 @@ public class BarController : MonoBehaviour
     [SerializeField] private float[] pollutionEndValues = new float[3];
     [SerializeField] private float[] pollutionValues = new float[3];
 
-    [SerializeField] private FillBar[] pollutionBars = new FillBar[3];
+    //[SerializeField] private FillBar[] pollutionBars = new FillBar[3];
+    [SerializeField] private TextMeshProUGUI[] pollutionTexts = new TextMeshProUGUI[3];
 
     [SerializeField] private int minTemperature = 25;
     [SerializeField] private int maxTemperature = 125;
@@ -49,20 +50,24 @@ public class BarController : MonoBehaviour
 
     void Update()
     {
-        UpdateFillBars();
+        //UpdateFillBars();
+        UpdatePollutionTexts();
         UpdateCumulativeTemperature();
     }
 
-    private void UpdateFillBars()
+    //private void UpdateFillBars()
+    //{
+    //    for (int i = 0; i < pollutionBars.Length; i++) pollutionBars[i].SetFill(pollutionValues[i] / pollutionEndValues[i]);
+    //}
+
+    private void UpdatePollutionTexts()
     {
-        for (int i = 0; i < pollutionBars.Length; i++) pollutionBars[i].SetFill(pollutionValues[i] / pollutionEndValues[i]);
+        for (int i = 0; i < pollutionTexts.Length; i++) pollutionTexts[i].text = Mathf.Round((pollutionValues[i] / pollutionEndValues[i]) * 100).ToString() + "%";
     }
 
     private void UpdateCumulativeTemperature()
     {
-        float cumulativePollution = 0f;
-        foreach (FillBar bar in pollutionBars) cumulativePollution += bar.FillAmount;
-        cumulativeTemperature.text = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * (cumulativePollution / 3f)).ToString() + " C�";
+        cumulativeTemperature.text = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * (PollutionValue / MaxPollution)).ToString();
     }
 
     public void AddPollution(float amountToAdd, PollutionType pollutionType)

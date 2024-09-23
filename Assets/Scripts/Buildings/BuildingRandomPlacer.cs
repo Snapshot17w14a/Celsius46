@@ -47,8 +47,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
     private void Start()
     {
-        UpdateSpawnableBuildings();
-        SpawnRandomPrefab(); // For testing; in the final version, this may be triggered externally
+        UpdateSpawnableBuidings();
     }
 
     private void UpdateSpawnableBuildings()
@@ -67,7 +66,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
             spawnableBuildings.Remove(building);
     }
 
-    public void SpawnRandomPrefab()
+    public bool SpawnRandomPrefab()
     {
         if (spawnableBuildings.Count > 0)
         {
@@ -76,7 +75,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
     }
 
     // This method will now be called externally from a different script
-    public void SpawnPrefab(BuildingType buildingType)
+    public bool SpawnPrefab(BuildingType buildingType)
     {
     // Generate a random point on a sphere to cast the ray from
     Vector3 randomPoint = Random.onUnitSphere * planetRadius;
@@ -145,13 +144,14 @@ public class PlanetPrefabSpawner : MonoBehaviour
             if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
             {
                 highlightSystem.HighlightNewObject(newBuilding.gameObject);
+                return true;
             }
         }
+        return false;
         // else // God ignore this comment gore
         {
             // In case water-based buildings are enabled later
             // buildingPrefab = waterBuildings[Random.Range(0, waterBuildings.Length)];
-        }
     }
 
     /// <summary>

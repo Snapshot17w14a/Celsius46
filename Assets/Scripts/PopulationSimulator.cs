@@ -28,7 +28,7 @@ public class PopulationSimulator : MonoBehaviour
     [SerializeField] private Material planetMaterial;
 
     private int population = 10;
-    private int maxPopulation = 0;
+    private int maxPopulation = 10;
 
     private int availableActionPoints = 0;
 
@@ -50,7 +50,6 @@ public class PopulationSimulator : MonoBehaviour
 
     void Start()
     {
-        PlanetPrefabSpawner.Instance.SpawnRandomPrefab();
         StartCoroutine(SimulationStep());
     }
 
@@ -58,6 +57,9 @@ public class PopulationSimulator : MonoBehaviour
     {
         while (true)
         {
+            //If population is high enough, spawn a new building
+            if (NewBuildingRequired()) PlanetPrefabSpawner.Instance.SpawnRandomPrefab();
+
             //Get all current buildings
             var buildings = FindObjectsByType<Building>(FindObjectsSortMode.None);
             var plants = FindObjectsByType<Plant>(FindObjectsSortMode.None);
@@ -77,10 +79,6 @@ public class PopulationSimulator : MonoBehaviour
 
             //Update the display texts
             UpdateDisplayText();
-            
-
-            //If population is high enough, spawn a new building
-            if (NewBuildingRequired()) PlanetPrefabSpawner.Instance.SpawnRandomPrefab();
 
             //Idle the simulation for set seconds
             yield return new WaitForSeconds(simulationIdleTime);
@@ -121,7 +119,8 @@ public class PopulationSimulator : MonoBehaviour
 
     private void UpdateDisplayText()
     {
-        actionDisplay.text = "Action Points: " + availableActionPoints;
+        actionDisplay.text = availableActionPoints.ToString();
+        populationDisplay.text = population.ToString();
     }
 
     private void CheckForActionThreshold()
@@ -132,7 +131,6 @@ public class PopulationSimulator : MonoBehaviour
     private void UpdatePlanetBlend()
     {
         planetMaterial.SetFloat("_CurrentStage", barController.pollutionProgress);
-        populationDisplay.text = "Population: " + population;
     }
 
     private bool NewBuildingRequired()

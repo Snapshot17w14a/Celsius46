@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 85583307053160060}
   - component: {fileID: 5299835202999794511}
   - component: {fileID: 2057214593966253026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chernobyl NPP Variant 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a357002997aedf4d913b7e793c4aee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingValues: {fileID: 11400000, guid: 8c17b24f3d714ec4facb1f173e3ee60b, type: 2}
+  buildingValues: {fileID: 0}
 --- !u!1 &932350937065374416
 GameObject:
   m_ObjectHideFlags: 0

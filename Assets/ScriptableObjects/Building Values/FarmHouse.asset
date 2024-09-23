@@ -18,3 +18,5 @@ MonoBehaviour:
   waterPollution: 5
   minPopulation: 0
   maxPopulation: 250
+  buildingName: Farm House
+  buildingIcon: {fileID: 21300000, guid: d3611f03240787c42bc940fb477f8cce, type: 3}

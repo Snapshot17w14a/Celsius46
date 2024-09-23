@@ -18,3 +18,5 @@ MonoBehaviour:
   waterPollution: 5
   minPopulation: 0
   maxPopulation: 250
+  buildingName: Pesticide Plant
+  buildingIcon: {fileID: 21300000, guid: 64f7259f791794f4a98b7e0cc1d9c1a9, type: 3}

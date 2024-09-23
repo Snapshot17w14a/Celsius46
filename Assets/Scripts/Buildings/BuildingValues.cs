@@ -14,4 +14,8 @@ public class BuildingValues : ScriptableObject
     [Header("Population values for spawning")]
     public int minPopulation;
     public int maxPopulation;
+
+    [Header("UI display settings")]
+    public string buildingName;
+    public Sprite buildingIcon;
 }

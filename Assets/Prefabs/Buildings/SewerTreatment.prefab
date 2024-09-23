@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 85583307053160060}
   - component: {fileID: 5299835202999794511}
   - component: {fileID: 2057214593966253026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SewerTreatment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a357002997aedf4d913b7e793c4aee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingValues: {fileID: 11400000, guid: d437947f44efb204caf3af7b7a7765ff, type: 2}
+  buildingValues: {fileID: 11400000, guid: 21eade71e99d6a74e8340bc10eb59f12, type: 2}
 --- !u!1 &1549474638344795859
 GameObject:
   m_ObjectHideFlags: 0

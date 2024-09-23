@@ -3,10 +3,11 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     [SerializeField] private BuildingValues buildingValues;
-    //[SerializeField] private GameObject infoCard;
 
     public int GetUpkeepValue => buildingValues.popultionSupport;
     public (int, int) GetPopulationValues => (buildingValues.minPopulation, buildingValues.maxPopulation);
+    public BuildingValues GetBuildingValues => buildingValues;
+
     public float GetPollutionValues(BarController.PollutionType pollutionType)
     {
         return (int)pollutionType switch
@@ -25,14 +26,4 @@ public class Building : MonoBehaviour
             PopulationSimulator.Instance.SubtractMaxPopulation(buildingValues.popultionSupport);
         }
     }
-
-    //private void OnMouseEnter()
-    //{
-    //    infoCard.SetActive(true);
-    //}
-
-    //private void OnMouseExit()
-    //{
-    //    infoCard.SetActive(false);
-    //}
 }
