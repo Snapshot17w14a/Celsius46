@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441272403147547923}
   - component: {fileID: 5574018378073176469}
+  - component: {fileID: -9055789077110706935}
   m_Layer: 0
   m_Name: Seaweed
   m_TagString: Nature
@@ -56,6 +57,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.5}
+--- !u!114 &-9055789077110706935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2255104060147285929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405ea9d38fe4ae54f947766c281dcdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantValues: {fileID: 11400000, guid: afb936b1ed5e7704685a64135d4c421c, type: 2}
 --- !u!1 &5629421881351818500
 GameObject:
   m_ObjectHideFlags: 0
