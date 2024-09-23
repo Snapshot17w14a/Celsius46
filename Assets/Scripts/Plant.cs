@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private PlantValues plantValues;
 
-    // Update is called once per frame
-    void Update()
+    public int GetActionCost => plantValues.actionCost;
+
+    public float GetPollutionValues(BarController.PollutionType pollutionType)
     {
-        
+        return (int)pollutionType switch
+        {
+            0 => plantValues.airPollution,
+            1 => plantValues.soilPollution,
+            2 => plantValues.waterPollution,
+            _ => 0
+        };
     }
 }

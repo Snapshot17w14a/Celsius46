@@ -91,7 +91,6 @@ public class NatureHandler : MonoBehaviour
             uv = GetUVFromHit(planetMesh, triangleIndex, hit);
 
             Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
-            Debug.Log(pixelColor.ToString());
 
             if (prefabToSpawnOnWater != null
                 && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
@@ -100,8 +99,7 @@ public class NatureHandler : MonoBehaviour
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
-                Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform);
-
+                PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
                 lastSpawnPosition = spawnPosition;
             }
             else if (prefabToSpawnOnLand != null
@@ -113,14 +111,12 @@ public class NatureHandler : MonoBehaviour
 
                 if (!sunFlowerMode)
                 {
-                    Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform);
-
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
                     lastSpawnPosition = spawnPosition;
                 }
                 else
                 {
-                    Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform);
-
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
                     lastSpawnPosition = spawnPosition;
                 }
                 

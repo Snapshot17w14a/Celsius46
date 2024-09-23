@@ -51,7 +51,6 @@ public class BarController : MonoBehaviour
     {
         UpdateFillBars();
         UpdateCumulativeTemperature();
-        Debug.Log(pollutionProgress);
     }
 
     private void UpdateFillBars()
