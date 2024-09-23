@@ -10887,7 +10887,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefabToSpawnOnLand
       value: 
-      objectReference: {fileID: 2255104060147285929, guid: 0c6298f5b01e1c0448e68c7574a211b6,
+      objectReference: {fileID: 2255104060147285929, guid: b777e2f50b9fd1e4ab7eb1ed021895a6,
         type: 3}
     - target: {fileID: 4926718011040026961, guid: 7417f551e716efb4a88701aaa4d2392d,
         type: 3}
@@ -11126,7 +11126,7 @@ PrefabInstance:
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
       propertyPath: landBuildings.Array.size
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
@@ -11173,6 +11173,24 @@ PrefabInstance:
       propertyPath: landBuildings.Array.data[5]
       value: 
       objectReference: {fileID: 2057214593966253026, guid: 4ad5758427c61034193c538ecfc6f020,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[6]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: e9b379d8e9ea30b499a281fa27b95d92,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[7]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: e5da315e313dfea47a27a610616b6695,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[8]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: 75f457118e013fd4bb611d3d7d3e86a1,
         type: 3}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
