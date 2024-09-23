@@ -75,7 +75,7 @@ public class PopulationSimulator : MonoBehaviour
         {
             tempMaxPopulation += building.GetUpkeepValue;
         }
-        return tempMaxPopulation;
+        return tempMaxPopulation + 10;
     }
 
     private int GetPotentionPopulation()

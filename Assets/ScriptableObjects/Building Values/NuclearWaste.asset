@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
-  m_Name: NPP Values
+  m_Name: NuclearWaste
   m_EditorClassIdentifier: 
-  popultionSupport: 0
-  airPollution: 0
-  soilPollution: 0
-  waterPollution: 0
+  popultionSupport: 5
+  airPollution: 15
+  soilPollution: 10
+  waterPollution: 5
   minPopulation: 0
-  maxPopulation: 0
+  maxPopulation: 250

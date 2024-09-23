@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 9f69d571a9cb54943b5a80ccd6b19e96, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1d74206847dbffa4b8e3f8c35133b64a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -460,7 +460,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: -3.2062405e+29, z: 4.5904e-41, w: 9.403955e-38}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.6114932e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee0f186ddc84274b8f8863cf5c77d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDuration: 20
+  dayDuration: 180
 --- !u!224 &343978111 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6921297007912710328, guid: a3d448a6bd2c0a94aa74aac82c97d261,
@@ -10961,7 +10961,7 @@ PrefabInstance:
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
       propertyPath: landBuildings.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}
@@ -10977,7 +10977,37 @@ PrefabInstance:
         type: 3}
       propertyPath: landBuildings.Array.data[0]
       value: 
-      objectReference: {fileID: 2057214593966253026, guid: a63be6190a9f4ab42b1fc8444ff252dc,
+      objectReference: {fileID: 2057214593966253026, guid: 84858d7c40acbc3458c0c36e477a4421,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[1]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: aa11cb71af647544eab8a1f21614744e,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[2]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: 58e23bfa9ae7d5e499a9508f3357b91f,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[3]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: 2eb6159e5ca20a0468acf352adc01bbe,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[4]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: 2155aaef5d6dea4409a58681dcf6d821,
+        type: 3}
+    - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
+        type: 3}
+      propertyPath: landBuildings.Array.data[5]
+      value: 
+      objectReference: {fileID: 2057214593966253026, guid: 4ad5758427c61034193c538ecfc6f020,
         type: 3}
     - target: {fileID: 2676396340532363202, guid: 483b981f7a33a6e4fac5455963f19ee5,
         type: 3}

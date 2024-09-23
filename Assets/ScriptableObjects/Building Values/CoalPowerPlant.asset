@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
-  m_Name: temp
+  m_Name: CoalPowerPlant
   m_EditorClassIdentifier: 
-  popultionSupport: 25
-  airPollution: 50
-  soilPollution: 100
-  waterPollution: 250
+  popultionSupport: 100
+  airPollution: 30
+  soilPollution: 10
+  waterPollution: 5
   minPopulation: 0
   maxPopulation: 250

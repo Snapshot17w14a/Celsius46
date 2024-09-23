@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlanetPrefabSpawner : MonoBehaviour
 {
     [SerializeField] private Building[] landBuildings;  // Array for land-based buildings
-    [SerializeField] private Building[] waterBuildings; // Array for water-based buildings
+    // [SerializeField] private Building[] waterBuildings; // Array for water-based buildings
     [SerializeField] private float planetRadius = 10f;
 
     [SerializeField] private Texture2D planetTexture;  // Texture for detecting land/water
@@ -54,7 +54,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
     {
         var population = PopulationSimulator.Instance.GetPopulation;
         foreach (var building in landBuildings) CheckBuildingValues(building, population);
-        foreach (var building in waterBuildings) CheckBuildingValues(building, population);
+        // foreach (var building in waterBuildings) CheckBuildingValues(building, population);
     }
 
     private void CheckBuildingValues(Building building, int population)
@@ -112,21 +112,18 @@ public class PlanetPrefabSpawner : MonoBehaviour
         {
             // Choose a random land building from the array
             buildingPrefab = landBuildings[Random.Range(0, landBuildings.Length)];
+            Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
+
+            HighlightObjects highlightSystem = FindObjectOfType<HighlightObjects>();
+            if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
+            {
+                highlightSystem.HighlightNewObject(newBuilding.gameObject);
+            }
         }
-        else
+        // else // God ignore this comment gore
         {
             // Choose a random water building from the array
-            buildingPrefab = waterBuildings[Random.Range(0, waterBuildings.Length)];
-        }
-
-        // Instantiate the chosen building at the hit point
-        Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
-
-        // Notify the highlight system if it's currently active
-        HighlightObjects highlightSystem = FindObjectOfType<HighlightObjects>();
-        if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
-        {
-            highlightSystem.HighlightNewObject(newBuilding.gameObject);
+            // buildingPrefab = waterBuildings[Random.Range(0, waterBuildings.Length)];
         }
     }
 
