@@ -47,7 +47,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
     private void Start()
     {
-        UpdateSpawnableBuidings();
+        UpdateSpawnableBuildings();
     }
 
     private void UpdateSpawnableBuildings()
@@ -66,7 +66,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
             spawnableBuildings.Remove(building);
     }
 
-    public bool SpawnRandomPrefab()
+    public void SpawnRandomPrefab()
     {
         if (spawnableBuildings.Count > 0)
         {
@@ -75,58 +75,57 @@ public class PlanetPrefabSpawner : MonoBehaviour
     }
 
     // This method will now be called externally from a different script
-    public bool SpawnPrefab(BuildingType buildingType)
+    public void SpawnPrefab(BuildingType buildingType)
     {
-    // Generate a random point on a sphere to cast the ray from
-    Vector3 randomPoint = Random.onUnitSphere * planetRadius;
-    Vector3 directionToCenter = -randomPoint.normalized;
+        // Generate a random point on a sphere to cast the ray from
+        Vector3 randomPoint = Random.onUnitSphere * planetRadius;
+        Vector3 directionToCenter = -randomPoint.normalized;
 
-    // Cast a ray from the random point towards the planet's center
-    if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
-    {
-        // Sample the texture at the hit point to determine land or water
-        Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
-        
-        // If UV is invalid, restart the process
-        if (uv == Vector2.negativeInfinity)
+        // Cast a ray from the random point towards the planet's center
+        if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
         {
-            Debug.Log("Invalid UV detected. Restarting process");
-            SpawnPrefab(buildingType);
-            return;
-        }
+            // Sample the texture at the hit point to determine land or water
+            Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
 
-        Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
-
-        // Check for collision with nature or highlight objects
-        if (IsCollidingWithTaggedObjects(hit.point))
-        {
-            Debug.Log("Hit a nature or highlight object. Restarting process");
-            SpawnPrefab(buildingType);
-            return;
-        }
-
-        // Determine if it's land or water and spawn the appropriate building
-        if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
-        {
-            if (buildingLocation == BuildingLocation.Land)
+            // If UV is invalid, restart the process
+            if (uv == Vector2.negativeInfinity)
             {
-                // Spawn a building at the hit point
-                SpawnBuildingAtPosition(hit.point, buildingLocation);
+                Debug.Log("Invalid UV detected. Restarting process");
+                SpawnPrefab(buildingType);
+                return;
+            }
+
+            Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
+
+            // Check for collision with nature or highlight objects
+            if (IsCollidingWithTaggedObjects(hit.point))
+            {
+                Debug.Log("Hit a nature or highlight object. Restarting process");
+                SpawnPrefab(buildingType);
+                return;
+            }
+
+            // Determine if it's land or water and spawn the appropriate building
+            if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
+            {
+                if (buildingLocation == BuildingLocation.Land)
+                {
+                    // Spawn a building at the hit point
+                    SpawnBuildingAtPosition(hit.point, buildingLocation);
+                }
+                else
+                {
+                    Debug.Log("Hit water. Restarting process");
+                    SpawnPrefab(buildingType);
+                }
             }
             else
             {
-                Debug.Log("Hit water. Restarting process");
+                Debug.Log("Undetermined location. Restarting process");
                 SpawnPrefab(buildingType);
             }
         }
-        else
-        {
-            Debug.Log("Undetermined location. Restarting process");
-            SpawnPrefab(buildingType);
-        }
     }
-}
-
 
     private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location)
     {
@@ -144,14 +143,15 @@ public class PlanetPrefabSpawner : MonoBehaviour
             if (highlightSystem != null && highlightSystem.IsHighlightModeActive())
             {
                 highlightSystem.HighlightNewObject(newBuilding.gameObject);
-                return true;
+                return;
             }
         }
-        return false;
+        return;
         // else // God ignore this comment gore
         {
             // In case water-based buildings are enabled later
             // buildingPrefab = waterBuildings[Random.Range(0, waterBuildings.Length)];
+        }
     }
 
     /// <summary>
@@ -206,12 +206,12 @@ public class PlanetPrefabSpawner : MonoBehaviour
                Mathf.Abs(a.b - b.b) < tolerance;
     }
 
-    /// <summary>
-    /// Gets UV coordinates from the hit point on the mesh.
-    /// </summary>
-    /// <summary>
-    /// Gets UV coordinates from the hit point on the mesh.
-    /// </summary>
+        /// <summary>
+        /// Gets UV coordinates from the hit point on the mesh.
+        /// </summary>
+        /// <summary>
+        /// Gets UV coordinates from the hit point on the mesh.
+        /// </summary>
     private Vector2 GetUVFromHit(Mesh mesh, int triangleIndex, RaycastHit hit)
     {
         // Validate that the mesh has UVs and enough triangles

@@ -18,5 +18,5 @@ MonoBehaviour:
   waterPollution: 5
   minPopulation: 100
   maxPopulation: 2000
-  buildingName: Block
+  buildingName: High Density House
   buildingIcon: {fileID: 21300000, guid: 390f9af179cbed844b4659ad20fcce27, type: 3}

@@ -73,6 +73,6 @@ public class BarController : MonoBehaviour
     public void AddPollution(float amountToAdd, PollutionType pollutionType)
     {
         //pollutionBars[(int)pollutionType].SetFill((pollutionValues[(int)pollutionType] + amountToAdd) / pollutionEndValues[(int)pollutionType]);
-        pollutionValues[(int)pollutionType] += amountToAdd;
+        pollutionValues[(int)pollutionType] = Mathf.Clamp(pollutionValues[(int)pollutionType] + amountToAdd, 0 , pollutionEndValues[(int)pollutionType]);
     }
 }

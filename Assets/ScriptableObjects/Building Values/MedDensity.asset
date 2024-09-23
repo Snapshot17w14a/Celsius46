@@ -18,5 +18,5 @@ MonoBehaviour:
   waterPollution: 2
   minPopulation: 50
   maxPopulation: 1000
-  buildingName: Row House
+  buildingName: Medium Density House
   buildingIcon: {fileID: 21300000, guid: 4a65b260f7f9f3942aa23f1cf92bb769, type: 3}
