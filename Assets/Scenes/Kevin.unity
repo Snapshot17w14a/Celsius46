@@ -461,7 +461,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.6114932e-38}
+  m_BoundingSphereOverride: {x: 0, y: NaN, z: NaN, w: 8.545842e-29}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10893,7 +10893,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefabToSpawnOnWater
       value: 
-      objectReference: {fileID: 2255104060147285929, guid: ffe039ec3b5b99c4b81c5ad6d1be1834,
+      objectReference: {fileID: 2255104060147285929, guid: 207b1bdc957b8764a8306377b3df1622,
         type: 3}
     - target: {fileID: 4926718011040026961, guid: 7417f551e716efb4a88701aaa4d2392d,
         type: 3}
