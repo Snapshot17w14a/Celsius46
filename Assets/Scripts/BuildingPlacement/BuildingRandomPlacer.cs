@@ -13,8 +13,9 @@ public class PlanetPrefabSpawner : MonoBehaviour
 
     [Header("Colors for the placement limiter")]
     [SerializeField] private Color landColor;
-    [SerializeField] private Color waterColor;
+    [SerializeField] private Color sandColor;
     [SerializeField] private Color snowColor;
+    [SerializeField] private Color waterColor;
 
     private readonly List<Building> spawnableBuildings = new();
 
@@ -156,7 +157,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
     /// </summary>
     private bool CanPlaceBuilding(Color pixelColor, out BuildingLocation location)
     {
-        bool isLand = CompareColors(pixelColor, landColor) || CompareColors(pixelColor, snowColor);
+        bool isLand = CompareColors(pixelColor, landColor) || CompareColors(pixelColor, snowColor) || CompareColors(pixelColor, sandColor);
         bool isWater = CompareColors(pixelColor, waterColor);
 
         if (isLand)

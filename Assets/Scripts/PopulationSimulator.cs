@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class PopulationSimulator : MonoBehaviour
 {
-    [Header("Simulation idle")]
+    [Header("Simulation idle time")]
+    [Tooltip("The time in seconds the simulation will idle before the next step.")]
     [SerializeField] private float simulationIdleTime;
 
     [Header("Chance for growth")]
+    [Tooltip("The chance for every 2 population to have a child and thus increase the population.")]
     [SerializeField] private float childChance;
 
-    [Header("Population % for new building")]
+    [Header("Building value")]
+    [Tooltip("The percentage of the max population required to spawn a new building.")]
     [SerializeField] private float populationForNewBuilding;
 
+    [Header("Action value")]
+    [Tooltip("The amount of population required to gain an action point.")]
+    [SerializeField] private int populationForActionPoint;
+    [SerializeField] private int maxActionPoints;
+
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI populationDisplay;
+    [SerializeField] private TextMeshProUGUI actionDisplay;
     [SerializeField] private BarController barController;
     [SerializeField] private Material planetMaterial;
 
     private int population = 10;
     private int maxPopulation = 0;
 
+    private int availableActionPoints = 0;
+
+    public int AvailableActionPoints => availableActionPoints;
     public int GetPopulation => population;
 
     private static PopulationSimulator instance;
@@ -37,6 +50,7 @@ public class PopulationSimulator : MonoBehaviour
 
     void Start()
     {
+        PlanetPrefabSpawner.Instance.SpawnRandomPrefab();
         StartCoroutine(SimulationStep());
     }
 
@@ -52,6 +66,10 @@ public class PopulationSimulator : MonoBehaviour
 
             //Set the population based on the potential population growth
             population = Mathf.Clamp(population += GetPotentionPopulation(), 0, maxPopulation);
+
+            //Check if the population is high enough to gain an action point
+            CheckForActionThreshold();
+            actionDisplay.text = "Action Points: " + availableActionPoints;
 
             //Add the pollution produced by all buindings and update the planet blend
             AddPollution(buildings);
@@ -94,6 +112,11 @@ public class PopulationSimulator : MonoBehaviour
             }
             barController.AddPollution(pollutionToAdd, (BarController.PollutionType)i);
         }
+    }
+
+    private void CheckForActionThreshold()
+    {
+        availableActionPoints = Mathf.Clamp(availableActionPoints + (population / populationForActionPoint), 0, maxActionPoints);
     }
 
     private void UpdatePlanetBlend()
