@@ -5,5 +5,9 @@ Menu Sounds:
 Game Sounds:
 	- Background music
 	- Lightning Strike
-	- Place object (forest)
+	- Place object
 	- Meter danger alert
+Ambiances:
+	- Nature
+	- Industrial
+	- Ocean
