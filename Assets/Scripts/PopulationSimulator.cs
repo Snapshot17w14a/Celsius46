@@ -10,8 +10,12 @@ public class PopulationSimulator : MonoBehaviour
     [Header("Chance for growth")]
     [SerializeField] private float childChance;
 
+    [Header("Population % for new building")]
+    [SerializeField] private float populationForNewBuilding;
+
     [SerializeField] private TextMeshProUGUI populationDisplay;
     [SerializeField] private BarController barController;
+    [SerializeField] private Material planetMaterial;
 
     private int population = 10;
     private int maxPopulation = 0;
@@ -49,11 +53,15 @@ public class PopulationSimulator : MonoBehaviour
             //Set the population based on the potential population growth
             population = Mathf.Clamp(population += GetPotentionPopulation(), 0, maxPopulation);
 
-            //Add the pollution produced by all buindings
+            //Add the pollution produced by all buindings and update the planet blend
             AddPollution(buildings);
+            UpdatePlanetBlend();
 
             //Display the population
             populationDisplay.text = "Population: " + population;
+
+            //If population is high enough, spawn a new building
+            if (NewBuildingRequired()) PlanetPrefabSpawner.Instance.SpawnRandomPrefab();
 
             //Idle the simulation for set seconds
             yield return new WaitForSeconds(simulationIdleTime);
@@ -86,6 +94,16 @@ public class PopulationSimulator : MonoBehaviour
             }
             barController.AddPollution(pollutionToAdd, (BarController.PollutionType)i);
         }
+    }
+
+    private void UpdatePlanetBlend()
+    {
+        planetMaterial.SetFloat("_CurrentStage", barController.pollutionProgress);
+    }
+
+    private bool NewBuildingRequired()
+    {
+       return population >= maxPopulation * (populationForNewBuilding / 100f);
     }
 
     public void SubtractMaxPopulation(int amount)

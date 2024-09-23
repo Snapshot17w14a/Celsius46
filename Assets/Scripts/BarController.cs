@@ -19,10 +19,39 @@ public class BarController : MonoBehaviour
     [SerializeField] private int maxTemperature = 125;
     [SerializeField] private TextMeshProUGUI cumulativeTemperature;
 
+    public float PollutionValue
+    {
+        get
+        {
+            float max = 0f;
+            foreach (float f in pollutionValues) max += f;
+            return max;
+        }
+    }
+
+    public float MaxPollution
+    {
+        get
+        {
+            float max = 0f;
+            foreach (float f in pollutionEndValues) max += f;
+            return max;
+        }
+    }
+
+    public float pollutionProgress
+    {
+        get
+        {
+            return PollutionValue / MaxPollution;
+        }
+    }
+
     void Update()
     {
         UpdateFillBars();
         UpdateCumulativeTemperature();
+        Debug.Log(pollutionProgress);
     }
 
     private void UpdateFillBars()
