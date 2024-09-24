@@ -2030,7 +2030,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.9e-44, y: 6e-45, z: 1.3e-44, w: 1.8670167e+30}
+  m_BoundingSphereOverride: {x: 4.9e-44, y: 6e-45, z: 1.3e-44, w: 2.729034e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -19998,7 +19998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8559363e727c61429f4295d3bddad10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulationIdleTime: 1
+  simulationIdleTime: 0.1
   childChance: 20
   populationForNewBuilding: 95
   populationForActionPoint: 100

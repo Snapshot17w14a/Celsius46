@@ -8,6 +8,7 @@ public class HighlightObjects : MonoBehaviour
     [SerializeField] private Material defaultMaterial;             // Default material to apply when resetting
     [SerializeField] private GameObject prefabToSpawn;             // Prefab to spawn at the clicked object's location
     [SerializeField] private float prefabLifetime = 5f;            // Lifetime of the prefab before it gets destroyed
+    [SerializeField] private int cost = 10;
 
     private Dictionary<GameObject, Material[]> originalMaterials = new Dictionary<GameObject, Material[]>(); // Store original materials to restore later
     private bool isHighlighted = false;  // Toggle state to track whether objects are highlighted or reset  
@@ -39,7 +40,7 @@ public class HighlightObjects : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) // Left mouse button
         {
-            if (PopulationSimulator.Instance.AvailableActionPoints == 0) return;
+            if (PopulationSimulator.Instance.AvailableActionPoints < cost) return;
             DetectHighlightedObject();
         }
     }
