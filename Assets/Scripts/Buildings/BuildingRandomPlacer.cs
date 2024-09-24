@@ -103,7 +103,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
     // This method will now be called externally from a different script
     public bool SpawnPrefab(BuildingType buildingType)
     {
-        int retryCount = 5;  // Number of retry attempts
+        int retryCount = 20;  // Number of retry attempts
 
         while (retryCount > 0)
         {

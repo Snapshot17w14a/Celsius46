@@ -10,7 +10,7 @@ public class HighlightObjects : MonoBehaviour
     [SerializeField] private float prefabLifetime = 5f;            // Lifetime of the prefab before it gets destroyed
 
     private Dictionary<GameObject, Material[]> originalMaterials = new Dictionary<GameObject, Material[]>(); // Store original materials to restore later
-    private bool isHighlighted = false;  // Toggle state to track whether objects are highlighted or reset
+    private bool isHighlighted = false;  // Toggle state to track whether objects are highlighted or reset  
 
     void Update()
     {
@@ -39,6 +39,7 @@ public class HighlightObjects : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) // Left mouse button
         {
+            if (PopulationSimulator.Instance.AvailableActionPoints == 0) return;
             DetectHighlightedObject();
         }
     }
@@ -149,6 +150,7 @@ public class HighlightObjects : MonoBehaviour
                             Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
                             GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
+                            PopulationSimulator.Instance.SubtractActionPoint(spawnedPrefab.GetComponent<Plant>().GetActionCost);
 
                             // If we are in highlight mode, highlight the newly spawned prefab
                             if (isHighlighted)
