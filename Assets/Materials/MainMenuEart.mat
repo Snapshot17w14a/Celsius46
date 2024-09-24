@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TextureBlend
+  m_Name: MainMenuEart
   m_Shader: {fileID: -6465566751694194690, guid: 9de48b550ab095144939b105c13b6447,
     type: 3}
   m_Parent: {fileID: 0}
