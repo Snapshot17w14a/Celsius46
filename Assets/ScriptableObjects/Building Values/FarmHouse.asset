@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FarmHouse
   m_EditorClassIdentifier: 
   popultionSupport: 20
-  airPollution: 20
+  airPollution: 10
   soilPollution: 15
-  waterPollution: 5
+  waterPollution: 20
   minPopulation: 0
   maxPopulation: 250
   buildingName: Farm House

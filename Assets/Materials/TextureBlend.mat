@@ -83,7 +83,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+<<<<<<< Updated upstream
     - _CurrentStage: 0.33333334
+=======
+    - _CurrentStage: 0.08270667
+>>>>>>> Stashed changes
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []

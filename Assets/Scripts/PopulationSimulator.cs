@@ -36,6 +36,8 @@ public class PopulationSimulator : MonoBehaviour
     public int GetPopulation => population;
 
     private static PopulationSimulator instance;
+    private float actionPointFragment;
+
     public static PopulationSimulator Instance
     {
         get
@@ -97,7 +99,7 @@ public class PopulationSimulator : MonoBehaviour
 
     private int GetPotentionPopulation()
     {
-        return Mathf.RoundToInt(population / 2 * (childChance / 100));
+        return Mathf.CeilToInt(population / 2 * (childChance / 100));
     }
 
     private void AddPollution(Building[] buildings, Plant[] plants)
@@ -125,7 +127,10 @@ public class PopulationSimulator : MonoBehaviour
 
     private void CheckForActionThreshold()
     {
-        availableActionPoints = Mathf.Clamp(availableActionPoints + (population / populationForActionPoint), 0, maxActionPoints);
+        actionPointFragment += population / (float)populationForActionPoint;
+        int fullPoint = Mathf.FloorToInt(actionPointFragment);
+        actionPointFragment -= fullPoint;
+        availableActionPoints += fullPoint;
     }
 
     private void UpdatePlanetBlend()

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CoalPowerPlant
   m_EditorClassIdentifier: 
   popultionSupport: 100
-  airPollution: 30
-  soilPollution: 10
+  airPollution: 15
+  soilPollution: 5
   waterPollution: 5
   minPopulation: 0
   maxPopulation: 250

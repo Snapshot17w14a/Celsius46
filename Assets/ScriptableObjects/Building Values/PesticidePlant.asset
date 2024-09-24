@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PesticidePlant
   m_EditorClassIdentifier: 
   popultionSupport: 10
-  airPollution: 20
-  soilPollution: 15
-  waterPollution: 5
+  airPollution: 5
+  soilPollution: 20
+  waterPollution: 15
   minPopulation: 0
   maxPopulation: 250
   buildingName: Pesticide Plant

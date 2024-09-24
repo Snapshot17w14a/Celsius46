@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Sewage
   m_EditorClassIdentifier: 
   popultionSupport: 15
-  airPollution: 15
-  soilPollution: 10
-  waterPollution: 5
+  airPollution: 10
+  soilPollution: 5
+  waterPollution: 15
   minPopulation: 0
   maxPopulation: 250
   buildingName: Sewage Treatment Plant

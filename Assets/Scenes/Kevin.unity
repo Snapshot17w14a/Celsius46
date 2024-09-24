@@ -15639,6 +15639,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3718012245607735877, guid: da93e8c941043e144bebd77e7067fea6,
+        type: 3}
+      propertyPath: cost
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8985722541449319618, guid: da93e8c941043e144bebd77e7067fea6,
         type: 3}
       propertyPath: m_Name
@@ -19999,7 +20004,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulationIdleTime: 1
+<<<<<<< Updated upstream
   childChance: 20
+=======
+  childChance: 10
+>>>>>>> Stashed changes
   populationForNewBuilding: 95
   populationForActionPoint: 100
   maxActionPoints: 100
