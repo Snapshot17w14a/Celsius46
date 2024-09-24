@@ -30,6 +30,7 @@ public class PopulationSimulator : MonoBehaviour
     private int population = 10;
     private int maxPopulation = 10;
 
+    private float actionPointFragment = 0;
     private int availableActionPoints = 0;
 
     public int AvailableActionPoints => availableActionPoints;
