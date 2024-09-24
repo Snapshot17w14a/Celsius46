@@ -20004,11 +20004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulationIdleTime: 1
-<<<<<<< Updated upstream
-  childChance: 20
-=======
   childChance: 10
->>>>>>> Stashed changes
   populationForNewBuilding: 95
   populationForActionPoint: 100
   maxActionPoints: 100
