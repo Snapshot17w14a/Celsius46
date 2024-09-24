@@ -116,7 +116,7 @@ public class NatureHandler : MonoBehaviour
                 }
                 else
                 {
-                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost); 
                     lastSpawnPosition = spawnPosition;
                 }
                 

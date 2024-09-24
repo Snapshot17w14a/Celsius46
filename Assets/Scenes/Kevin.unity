@@ -19998,7 +19998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8559363e727c61429f4295d3bddad10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulationIdleTime: 0.1
+  simulationIdleTime: 1
   childChance: 20
   populationForNewBuilding: 95
   populationForActionPoint: 100
