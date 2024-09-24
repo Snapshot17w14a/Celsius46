@@ -15658,6 +15658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1076039602}
+  - component: {fileID: 1076039603}
   m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
@@ -15694,6 +15695,29 @@ RectTransform:
   m_AnchoredPosition: {x: -75.72, y: 0}
   m_SizeDelta: {x: 100, y: 88}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1076039603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076039601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc133d2e6f491d48b265234e0e53da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingCounterText:
+  - {fileID: 18586341}
+  - {fileID: 303575103}
+  - {fileID: 449213177}
+  - {fileID: 1492857917}
+  - {fileID: 991236263}
+  - {fileID: 2100215559}
+  - {fileID: 61356771}
+  - {fileID: 444546644}
+  - {fileID: 1586699738}
+  buildingCounter: 000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1112356047
 GameObject:
   m_ObjectHideFlags: 0

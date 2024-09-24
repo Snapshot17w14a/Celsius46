@@ -20,3 +20,4 @@ MonoBehaviour:
   maxPopulation: 250
   buildingName: Nuclear Waste
   buildingIcon: {fileID: 21300000, guid: 933f4bfa8339fe14097137eb97bf3b69, type: 3}
+  index: 8

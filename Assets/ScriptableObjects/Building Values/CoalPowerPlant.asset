@@ -20,3 +20,4 @@ MonoBehaviour:
   maxPopulation: 250
   buildingName: Coal Power Plant
   buildingIcon: {fileID: 21300000, guid: 5bbb49a65eb7fa842af072ee7d4bd216, type: 3}
+  index: 4

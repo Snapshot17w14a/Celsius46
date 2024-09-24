@@ -19,8 +19,14 @@ public class Building : MonoBehaviour
         };
     }
 
+    private void Start()
+    {
+        BuildingCounter.Instance.AddBuilding(buildingValues.index);
+    }
+
     private void OnDestroy()
     {
+        BuildingCounter.Instance.RemoveBuilding(buildingValues.index);
         if(PopulationSimulator.Instance != null)
         {
             PopulationSimulator.Instance.SubtractMaxPopulation(buildingValues.popultionSupport);

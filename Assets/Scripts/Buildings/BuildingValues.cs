@@ -18,4 +18,5 @@ public class BuildingValues : ScriptableObject
     [Header("UI display settings")]
     public string buildingName;
     public Sprite buildingIcon;
+    public int index;
 }
