@@ -18,6 +18,9 @@ public class NatureHandler : MonoBehaviour
     [SerializeField] private Color snowColor;
     [SerializeField] private Color waterColor;
 
+    private int seaweedActionCost;
+    private int treeActionCost;
+
     private bool sunFlowerMode = false;
     private bool isInNaturePlacementMode = false;  // Toggle state to track nature placement mode
     private bool isDragging = false;  // Tracks if the mouse button is held down
@@ -28,6 +31,12 @@ public class NatureHandler : MonoBehaviour
         Tree,
         Seaweed,
         Sunflower
+    }
+
+    private void Start()
+    {
+        seaweedActionCost = prefabToSpawnOnWater.GetComponent<Plant>().GetActionCost;
+        treeActionCost = prefabToSpawnOnLand.GetComponent<Plant>().GetActionCost;
     }
 
     void Update()
@@ -76,8 +85,6 @@ public class NatureHandler : MonoBehaviour
 
     private void PlaceAtClick()
     {
-        if (PopulationSimulator.Instance.AvailableActionPoints == 0) return;
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Planet")))
@@ -99,8 +106,11 @@ public class NatureHandler : MonoBehaviour
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
-                PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
-                lastSpawnPosition = spawnPosition;
+                if(PopulationSimulator.Instance.AvailableActionPoints >= seaweedActionCost)
+                {
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnWater, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
+                    lastSpawnPosition = spawnPosition;
+                }
             }
             else if (prefabToSpawnOnLand != null
                 && Vector3.Distance(lastSpawnPosition, spawnPosition) > minDistance
@@ -109,14 +119,9 @@ public class NatureHandler : MonoBehaviour
                 Vector3 directionToCenter = Vector3.zero - spawnPosition;
                 Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
 
-                if (!sunFlowerMode)
+                if (PopulationSimulator.Instance.AvailableActionPoints >= treeActionCost)
                 {
-                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
-                    lastSpawnPosition = spawnPosition;
-                }
-                else
-                {
-                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost); 
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnOnLand, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost); 
                     lastSpawnPosition = spawnPosition;
                 }
                 

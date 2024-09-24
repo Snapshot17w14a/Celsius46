@@ -37,7 +37,6 @@ public class PopulationSimulator : MonoBehaviour
     public int GetPopulation => population;
 
     private static PopulationSimulator instance;
-    private float actionPointFragment;
 
     public static PopulationSimulator Instance
     {
