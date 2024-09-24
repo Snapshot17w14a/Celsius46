@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlanetPrefabSpawner;
 
 public class PlanetPrefabSpawner : MonoBehaviour
 {
@@ -74,58 +75,96 @@ public class PlanetPrefabSpawner : MonoBehaviour
         }
     }
 
+    //public void RetrySpawnPrefab(BuildingType buildingType)
+    //{
+    //    int retryCount = 5;
+
+    //    while (retryCount > 0)
+    //    {
+    //        SpawnPrefab(buildingType);
+
+    //        // Assuming you have some condition to determine if the spawn was successful
+    //        // For example, check if the building was placed correctly:
+    //        if (/* Successful spawn condition */)
+    //        {
+    //            break;  // Exit loop if spawning was successful
+    //        }
+
+    //        retryCount--;
+
+    //        if (retryCount <= 0)
+    //        {
+    //            Debug.Log("Wasn't able to spawn after retry counter ran out!");
+    //        }
+    //    }
+    //}
+
+
     // This method will now be called externally from a different script
-    public void SpawnPrefab(BuildingType buildingType)
+    public bool SpawnPrefab(BuildingType buildingType)
     {
-        // Generate a random point on a sphere to cast the ray from
-        Vector3 randomPoint = Random.onUnitSphere * planetRadius;
-        Vector3 directionToCenter = -randomPoint.normalized;
+        int retryCount = 5;  // Number of retry attempts
 
-        // Cast a ray from the random point towards the planet's center
-        if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
+        while (retryCount > 0)
         {
-            // Sample the texture at the hit point to determine land or water
-            Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
+            // Generate a random point on a sphere to cast the ray from
+            Vector3 randomPoint = Random.onUnitSphere * planetRadius;
+            Vector3 directionToCenter = -randomPoint.normalized;
 
-            // If UV is invalid, restart the process
-            if (uv == Vector2.negativeInfinity)
+            // Cast a ray from the random point towards the planet's center
+            if (Physics.Raycast(randomPoint, directionToCenter, out RaycastHit hit, planetRadius * 2f))
             {
-                Debug.Log("Invalid UV detected. Restarting process");
-                SpawnPrefab(buildingType);
-                return;
-            }
+                // Sample the texture at the hit point to determine land or water
+                Vector2 uv = GetUVFromHit(planetMesh, hit.triangleIndex, hit);
 
-            Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
-
-            // Check for collision with nature or highlight objects
-            if (IsCollidingWithTaggedObjects(hit.point))
-            {
-                Debug.Log("Hit a nature or highlight object. Restarting process");
-                SpawnPrefab(buildingType);
-                return;
-            }
-
-            // Determine if it's land or water and spawn the appropriate building
-            if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
-            {
-                if (buildingLocation == BuildingLocation.Land)
+                // If UV is invalid, restart the process
+                if (uv == Vector2.negativeInfinity)
                 {
-                    // Spawn a building at the hit point
-                    SpawnBuildingAtPosition(hit.point, buildingLocation);
+                    Debug.Log("Invalid UV detected. Restarting process");
+                    retryCount--;
+                    continue; // Retry the process
+                }
+
+                Color pixelColor = planetTexture.GetPixelBilinear(uv.x, uv.y);
+
+                // Check for collision with nature or highlight objects
+                if (IsCollidingWithTaggedObjects(hit.point))
+                {
+                    Debug.Log("Hit a nature or highlight object. Restarting process");
+                    retryCount--;
+                    continue; // Retry the process
+                }
+
+                // Determine if it's land or water and spawn the appropriate building
+                if (CanPlaceBuilding(pixelColor, out BuildingLocation buildingLocation))
+                {
+                    if (buildingLocation == BuildingLocation.Land)
+                    {
+                        // Spawn a building at the hit point
+                        SpawnBuildingAtPosition(hit.point, buildingLocation);
+                        Debug.Log("Successfully spawned building!");
+                        return true;  // Successfully spawned
+                    }
+                    else
+                    {
+                        Debug.Log("Hit water. Restarting process");
+                        retryCount--;
+                        continue; // Retry the process
+                    }
                 }
                 else
                 {
-                    Debug.Log("Hit water. Restarting process");
-                    SpawnPrefab(buildingType);
+                    Debug.Log("Undetermined location. Restarting process");
+                    retryCount--;
+                    continue; // Retry the process
                 }
             }
-            else
-            {
-                Debug.Log("Undetermined location. Restarting process");
-                SpawnPrefab(buildingType);
-            }
         }
+
+        Debug.Log("Wasn't able to spawn after retry counter ran out!");
+        return false; // Return false if all retries fail
     }
+
 
     private void SpawnBuildingAtPosition(Vector3 position, BuildingLocation location)
     {
