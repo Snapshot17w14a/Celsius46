@@ -67,10 +67,10 @@ public class NatureHandler : MonoBehaviour
             lastSpawnPosition = Vector3.positiveInfinity;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
-        {
-            sunFlowerMode = !sunFlowerMode;
-        }
+        //if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    sunFlowerMode = !sunFlowerMode;
+        //}
     }
 
 
