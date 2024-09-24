@@ -67,10 +67,10 @@ public class NatureHandler : MonoBehaviour
             lastSpawnPosition = Vector3.positiveInfinity;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
-        {
-            sunFlowerMode = !sunFlowerMode;
-        }
+        //if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    sunFlowerMode = !sunFlowerMode;
+        //}
     }
 
 
@@ -116,7 +116,7 @@ public class NatureHandler : MonoBehaviour
                 }
                 else
                 {
-                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost);
+                    PopulationSimulator.Instance.SubtractActionPoint(Instantiate(prefabToSpawnSunflower, spawnPosition, spawnRotation, transform).GetComponent<Plant>().GetActionCost); 
                     lastSpawnPosition = spawnPosition;
                 }
                 
