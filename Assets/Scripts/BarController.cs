@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class BarController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class BarController : MonoBehaviour
     [SerializeField] private int minTemperature = 25;
     [SerializeField] private int maxTemperature = 125;
     [SerializeField] private TextMeshProUGUI cumulativeTemperature;
-
+    [SerializeField] private TextMeshProUGUI celsiusSymbol;
     public float PollutionValue
     {
         get
@@ -67,7 +68,19 @@ public class BarController : MonoBehaviour
 
     private void UpdateCumulativeTemperature()
     {
-        cumulativeTemperature.text = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * (PollutionValue / MaxPollution)).ToString();
+        int temperature = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * pollutionProgress);
+        cumulativeTemperature.text = temperature.ToString();
+
+        if (temperature > 40)
+        {
+            cumulativeTemperature.color = Color.red;
+            celsiusSymbol.color = Color.red;
+        }
+        else
+        {
+            cumulativeTemperature.color = Color.white;
+            celsiusSymbol.color = Color.white;
+        }
     }
 
     public void AddPollution(float amountToAdd, PollutionType pollutionType)
