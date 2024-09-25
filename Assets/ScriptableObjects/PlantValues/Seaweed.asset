@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Seaweed
   m_EditorClassIdentifier: 
   actionCost: 1
-  airPollution: 2
-  soilPollution: 2
-  waterPollution: 2
+  airPollution: 0.3
+  soilPollution: 0.3
+  waterPollution: 0.3

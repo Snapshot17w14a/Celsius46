@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popultionSupport: 100
   toKillOnDestruction: 100
-  airPollution: 10
-  soilPollution: 5
-  waterPollution: 5
+  airPollution: 100
+  soilPollution: 50
+  waterPollution: 50
   minPopulation: 0
   maxPopulation: 10000
   buildingName: Chemical Plant
