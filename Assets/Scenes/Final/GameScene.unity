@@ -1228,6 +1228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetMaterial: {fileID: 2100000, guid: 56ba3dfd1173a4c4fb075b37c6739a06, type: 2}
   canvasManager: {fileID: 476294535}
+  yearCounter: {fileID: 1995988344}
   tutorialsWindows:
   - {fileID: 1779323663}
   - {fileID: 788086379}
@@ -2416,7 +2417,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 3e-44, z: 6.959e-42, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.8e-44, z: 1.09919e-40, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -4040,19 +4041,22 @@ PrefabInstance:
     - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_text
-      value: This is the TIME & DEMOGRAPHIC tracker. As time passes, the planet's
-        climate may shift, and the human population might rise or fall, depending
-        on factors like buildings, temperature or player action.
+      value: It costs 5 ENERGY to PLACE plants. They slow down pollution.
       objectReference: {fileID: 0}
     - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSize
-      value: 26
+      value: 47.6
       objectReference: {fileID: 0}
     - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSizeBase
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4072,29 +4076,33 @@ PrefabInstance:
     - target: {fileID: 1372351859510637024, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_text
-      value: If you HOVER over a BUILDING, you can see how it affects the climate.
-        Be careful of which buildings you delete! Some (residential) hold a lot of
-        people!
+      value: The ENERGY will recharge over time. The more people alive, the faster
+        it will charge.
       objectReference: {fileID: 0}
     - target: {fileID: 1372351859510637024, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSize
-      value: 27
+      value: 37.55
       objectReference: {fileID: 0}
     - target: {fileID: 1372351859510637024, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSizeBase
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 1372351859510637024, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1486734619989763911, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 525
       objectReference: {fileID: 0}
     - target: {fileID: 1486734619989763911, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 1832642058859699274, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4279,20 +4287,22 @@ PrefabInstance:
     - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_text
-      value: 'This is the CLIMATE tracker. WATER POLLUTION is represented as the
-        drop, AIR POLLUTION is represented asthe  gush of air and GROUND POLLUTION
-        is represented as a plant in soil.  The TEMPERATURE counter lets you know
-        the current temperature of the planet. '
+      value: You can switch between ZAP and PLACE mode with this button.
       objectReference: {fileID: 0}
     - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSize
-      value: 23
+      value: 47.6
       objectReference: {fileID: 0}
     - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSizeBase
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4057890174415100064, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4313,29 +4323,27 @@ PrefabInstance:
     - target: {fileID: 4175230869423152248, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 4175230869423152248, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 307
+      value: 0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 4459934682716976778, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_text
-      value: This is the ENERGY tracker. It costs ENERGY to ZAP man-made structures
-        (20 energy cost) or PLACE plants (5 energy cost). You earn ENERGY based on
-        how many people are alive.
+      value: This is the ENERGY tracker. It costs 20 ENERGY to ZAP buildings.
       objectReference: {fileID: 0}
     - target: {fileID: 4459934682716976778, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSize
-      value: 27
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4459934682716976778, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 27
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5123474736713225363, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4345,12 +4353,12 @@ PrefabInstance:
     - target: {fileID: 5208655392652926141, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -701
       objectReference: {fileID: 0}
     - target: {fileID: 5208655392652926141, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 5270459721630506654, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4375,7 +4383,7 @@ PrefabInstance:
     - target: {fileID: 6153798955541568727, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 525
+      value: -517
       objectReference: {fileID: 0}
     - target: {fileID: 6153798955541568727, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4505,35 +4513,45 @@ PrefabInstance:
     - target: {fileID: 6859991050250246244, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_text
-      value: If you LEFT CLICK anywhere while in build mode, you can place plants.
-        They slow down pollution or outright eliminate it.
+      value: These are the pollution and temperature meters. At 100% the planet will
+        be fully polluted.
       objectReference: {fileID: 0}
     - target: {fileID: 6859991050250246244, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSize
-      value: 31
+      value: 37.1
       objectReference: {fileID: 0}
     - target: {fileID: 6859991050250246244, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSizeBase
       value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6859991050250246244, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_text
-      value: The TOP bar shows you how many man-made buildings you have and of what
-        type. It is pinnable, so it can retract when you don't want to see it. Here,
-        you may also access the SETTINGS menu.
+      value: Destroying a structure will lower the meters, but also lower the number
+        of people. You should be careful, as deleting too many residential buildings
+        can end your game.
       objectReference: {fileID: 0}
     - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSize
-      value: 26
+      value: 28.15
       objectReference: {fileID: 0}
     - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_fontSizeBase
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7475593717616646863, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
