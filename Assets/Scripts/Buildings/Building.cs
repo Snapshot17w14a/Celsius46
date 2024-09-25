@@ -27,9 +27,7 @@ public class Building : MonoBehaviour
     private void OnDestroy()
     {
         BuildingCounter.Instance?.RemoveBuilding(buildingValues.index);
-        if(PopulationSimulator.Instance != null)
-        {
-            PopulationSimulator.Instance.SubtractMaxPopulation(buildingValues.popultionSupport);
-        }
+        PopulationSimulator.Instance?.SubtractMaxPopulation(buildingValues.popultionSupport);
+        PopulationSimulator.Instance?.SubtractPopulation(buildingValues.toKillOnDestruction);
     }
 }

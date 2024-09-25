@@ -5,6 +5,7 @@ public class BuildingValues : ScriptableObject
 {
     [Header("The amount of humans the building can upkeep")]
     public int popultionSupport;
+    public int toKillOnDestruction;
 
     [Header("The amount of pollution the building produces each step of the simulation")]
     public float airPollution;
