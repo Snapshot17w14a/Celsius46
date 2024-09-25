@@ -15,8 +15,8 @@ MonoBehaviour:
   popultionSupport: 100
   toKillOnDestruction: 500
   airPollution: 0
-  soilPollution: 2
-  waterPollution: 2
+  soilPollution: 20
+  waterPollution: 20
   minPopulation: 500
   maxPopulation: 10000
   buildingName: Medium Density House
