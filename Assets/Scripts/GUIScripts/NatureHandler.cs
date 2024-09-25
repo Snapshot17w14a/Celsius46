@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using UnityEditor.Rendering.BuiltIn.ShaderGraph;
+using Unity.VisualScripting;
 
 public class NatureHandler : MonoBehaviour
 {
@@ -28,6 +31,8 @@ public class NatureHandler : MonoBehaviour
     private bool isDragging = false;  // Tracks if the mouse button is held down
     private Vector3 lastSpawnPosition = Vector3.positiveInfinity;  // Stores the position of the last spawned object
 
+    int lastMode = -1;  // Variable to keep track of the last mode
+
     private enum PlantType
     {
         Tree,
@@ -43,20 +48,21 @@ public class NatureHandler : MonoBehaviour
 
     void Update()
     {
-        // Toggle nature placement mode when "2" key is pressed
-        if (ModeHandler.currentMode == 0)
-        {
-            isInNaturePlacementMode = !isInNaturePlacementMode;
-            isDragging = false;  // Stop dragging when nature placement mode is toggled
-            Debug.Log(isInNaturePlacementMode ? "Nature Placement Mode Activated!" : "Nature Placement Mode Deactivated!");
-        }
+        //if (ModeHandler.GetterCurrentMode == ModeSwitch.Mode.build)
+        //{
+        //    isInNaturePlacementMode = !isInNaturePlacementMode;
+        //    isDragging = false;  // Stop dragging when nature placement mode is toggled
+        //    Debug.Log(isInNaturePlacementMode ? "Nature Placement Mode Activated!" : "Nature Placement Mode Deactivated!");
+        //}
 
-        if (ModeHandler.currentMode == 1)
-        {
-            isInNaturePlacementMode = false;
-            isDragging = false;  // Stop dragging when deactivating the mode
-            Debug.Log("Nature Placement Mode Deactivated!");
-        }
+        //if (ModeHandler.GetterCurrentMode == ModeSwitch.Mode.destroy)
+        //{
+        //    isInNaturePlacementMode = false;
+        //    isDragging = false;  // Stop dragging when deactivating the mode
+        //    Debug.Log("Nature Placement Mode Deactivated!");
+        //}
+
+        isInNaturePlacementMode = ModeHandler.GetterCurrentMode == ModeSwitch.Mode.build;
 
         // Start placing objects on mouse drag
         if (isInNaturePlacementMode && Input.GetMouseButtonDown(0))

@@ -1,36 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ModeSwitch : MonoBehaviour
 {
-    [SerializeField] public int currentMode = 0;
-    [SerializeField] GameObject destroyIcon;
-    [SerializeField] GameObject buildIcon;
+    [SerializeField] public bool currentMode = false;
+    [SerializeField] Sprite destroyIcon;
+    [SerializeField] Sprite buildIcon;
+    [SerializeField] Image buttonImage;
+    [SerializeField] Mode modes;
+
+    public enum Mode
+    {
+        build = 0,
+        destroy = 1,
+    }
+
+    public Mode GetterCurrentMode => modes;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SwitchMode();
-        }
+        
     }
+
     public void SwitchMode()
     {
-        if (currentMode == 0)
-        {
-            buildIcon.SetActive(true);
-            destroyIcon.SetActive(false);
-            Debug.Log("Switched to build!");
-            currentMode = 1;
-        }
-        else if (currentMode == 1)
-        {
-            buildIcon.SetActive(false);
-            destroyIcon.SetActive(true);
-            Debug.Log("Switched to destroy!");
-            currentMode = 0;
-        }
+        currentMode = !currentMode;
+        modes = currentMode ? Mode.build : Mode.destroy;
+
+        buttonImage.sprite = currentMode ? buildIcon : destroyIcon;
     }
 }
