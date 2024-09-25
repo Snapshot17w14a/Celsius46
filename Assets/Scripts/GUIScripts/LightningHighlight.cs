@@ -12,15 +12,16 @@ public class HighlightObjects : MonoBehaviour
     [SerializeField] private int cost = 10;
 
     [SerializeField] ModeSwitch ModeHandler;
+    private bool isInDestroyMode = false;  // Toggle state to track nature placement mode
 
     private Dictionary<GameObject, Material[]> originalMaterials = new Dictionary<GameObject, Material[]>(); // Store original materials to restore later
     private bool isHighlighted = false;  // Toggle state to track whether objects are highlighted or reset  
 
-    int lastMode = -1;  // Variable to keep track of the last mode
-
     void Update() // Assuming this is running in a method like Update()
     {
-        if (ModeHandler.currentMode == 1 && lastMode != 1)
+        isInDestroyMode = ModeHandler.GetterCurrentMode == ModeSwitch.Mode.destroy;
+
+        if (isInDestroyMode)
         {
             // Only toggle the highlight when the mode changes to 1
             if (isHighlighted)
@@ -31,21 +32,19 @@ public class HighlightObjects : MonoBehaviour
             {
                 HighlightTaggedObjects();
             }
-            isHighlighted = !isHighlighted;
         }
 
-        if (ModeHandler.currentMode == 0 && lastMode != 0)
+        if (!isInDestroyMode)
         {
-            if (isHighlighted)
+            if (!isHighlighted)
             {
                 ResetObjectsMaterial();
+                isInDestroyMode = false;
                 isHighlighted = false;  // Ensure that highlight mode is turned off
             }
         }
 
-        lastMode = ModeHandler.currentMode;  // Update the last mode
-
-        if (Input.GetMouseButtonDown(0)) // Left mouse button
+        if (isInDestroyMode && Input.GetMouseButtonDown(0)) // Left mouse button
         {
             if (PopulationSimulator.Instance.AvailableActionPoints < cost) return;
             DetectHighlightedObject();
