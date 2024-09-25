@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    [SerializeField] private Material planetMaterial;
     [SerializeField] private CanvasManager canvasManager;
     [SerializeField] private GameObject[] tutorialsWindows;
 
     private int currentTutorialIndex = 0;
+
+    private void Start()
+    {
+        planetMaterial.SetFloat("_CurrentStage", 0.0f);
+    }
 
     public void IncrementTutorialWindowIndex()
     {
