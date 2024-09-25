@@ -14,6 +14,10 @@ public class YearCounter : MonoBehaviour
     void Start()
     {
         yearText.text = "Year - " + year.ToString() + " A.D.";
+    }
+
+    public void StartCounter()
+    {
         StartCoroutine(YearCounterCoroutine());
     }
 
