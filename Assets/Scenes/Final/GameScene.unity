@@ -4037,25 +4037,47 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: This is the TIME & DEMOGRAPHIC tracker. As time passes, the planet's
+        climate may shift, and the human population might rise or fall, depending
+        on factors like buildings and temperature.
+      objectReference: {fileID: 0}
+    - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 893333339821143935, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 27
+      objectReference: {fileID: 0}
     - target: {fileID: 1186053391643488164, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -701
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1186053391643488164, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -300
       objectReference: {fileID: 0}
+    - target: {fileID: 1372351859510637024, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: If you HOVER over a BUILDING, you can see how it affects the climate.
+      objectReference: {fileID: 0}
     - target: {fileID: 1486734619989763911, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 526
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1486734619989763911, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2541501306690137705, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4232,35 +4254,82 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: This is the CLIMATE tracker. WATER POLLUTION is represented as the yellow
+        drop, AIR POLLUTION is represented as a green gush of air and GROUND POLLUTION
+        is represented as a dying plant in soil. The TEMPERATURE counter lets you
+        know the current temperature of the planet.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219574475897830690, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057890174415100064, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: 'Now that you''ve learned about the game''s windows and mechanics, you''re
+        ready to play!
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4175230869423152248, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 526.00006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4175230869423152248, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: 307
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459934682716976778, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: This is the ENERGY tracker. It costs ENERGY to ZAP man-made structures
+        of PLACE plants.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459934682716976778, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459934682716976778, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123474736713225363, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5208655392652926141, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -701
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5208655392652926141, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5696077204129045476, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 526.00006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5696077204129045476, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5867588688728578730, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4270,7 +4339,7 @@ PrefabInstance:
     - target: {fileID: 6153798955541568727, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -452.00003
+      value: 525
       objectReference: {fileID: 0}
     - target: {fileID: 6153798955541568727, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}
@@ -4396,6 +4465,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6859991050250246244, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: If you LEFT CLICK anywhere while in build mode, you can place plants.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_text
+      value: The TOP bar shows you how many man-made buildings you have and of what
+        type. It is unpinnable, so it can retract when you don't want to see it.
+        Here, you may also access the SETTINGS menu.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427677299588125671, guid: 0155fde59827ec84c91546c9b7568ad7,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7475593717616646863, guid: 0155fde59827ec84c91546c9b7568ad7,
         type: 3}

@@ -164,6 +164,7 @@ public class PopulationSimulator : MonoBehaviour
     public void SubtractPopulation(int amount)
     {
         population -= amount;
+        UpdateDisplayText();
     }
 
     public void StartSimulation()
