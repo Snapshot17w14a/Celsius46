@@ -49,6 +49,7 @@ public class CanvasManager : MonoBehaviour
         isTutorialVisible = false;
 
         tutorial.SetActive(false);
-        playCanvas.enabled = true;
+
+        PopulationSimulator.Instance.StartSimulation();
     }
 }
