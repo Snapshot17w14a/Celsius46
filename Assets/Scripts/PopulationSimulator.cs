@@ -129,8 +129,17 @@ public class PopulationSimulator : MonoBehaviour
     {
         actionPointFragment += population / (float)populationForActionPoint;
         int fullPoint = Mathf.FloorToInt(actionPointFragment);
-        actionPointFragment -= fullPoint;
-        availableActionPoints += fullPoint;
+        if (availableActionPoints + fullPoint >= maxActionPoints)
+        {
+            var maxAllowedAddition = maxActionPoints - availableActionPoints;
+            availableActionPoints += maxAllowedAddition;
+            actionPointFragment -= fullPoint - maxAllowedAddition;
+        }
+        else 
+        {
+            availableActionPoints += fullPoint;
+            actionPointFragment -= fullPoint;
+        }
     }
 
     private void UpdatePlanetBlend()
