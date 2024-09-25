@@ -29,7 +29,7 @@ public class BarController : MonoBehaviour
         get
         {
             float max = 0f;
-            foreach (float f in pollutionValues) max += f;
+            foreach (float f in pollutionValues) max += Mathf.Clamp(f, 0, 100000);
             return max;
         }
     }
