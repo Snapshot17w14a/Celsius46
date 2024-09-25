@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sewage
   m_EditorClassIdentifier: 
   popultionSupport: 100
+  toKillOnDestruction: 100
   airPollution: 10
   soilPollution: 5
   waterPollution: 15

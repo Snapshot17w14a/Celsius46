@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CoalPowerPlant
   m_EditorClassIdentifier: 
   popultionSupport: 100
+  toKillOnDestruction: 100
   airPollution: 15
   soilPollution: 5
   waterPollution: 5

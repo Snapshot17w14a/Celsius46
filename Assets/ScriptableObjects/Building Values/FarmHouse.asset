@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FarmHouse
   m_EditorClassIdentifier: 
   popultionSupport: 100
+  toKillOnDestruction: 100
   airPollution: 10
   soilPollution: 15
   waterPollution: 20

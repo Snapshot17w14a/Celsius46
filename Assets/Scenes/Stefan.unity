@@ -443,7 +443,7 @@ MonoBehaviour:
     ready to play!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_text: 1/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1718,7 +1718,7 @@ MonoBehaviour:
   m_text: 3/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1880,7 +1880,7 @@ MonoBehaviour:
   m_text: 6/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_text: It costs X ENERGY to PLACE natural structures.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2667,7 +2667,7 @@ MonoBehaviour:
     number of people.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2802,7 +2802,7 @@ MonoBehaviour:
   m_text: 7/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3163,7 +3163,7 @@ MonoBehaviour:
     decrease them.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_text: 5/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3541,7 +3541,7 @@ MonoBehaviour:
   m_text: 4/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3676,7 +3676,7 @@ MonoBehaviour:
   m_text: 8/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4484,7 +4484,7 @@ MonoBehaviour:
     will charge.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4619,7 +4619,7 @@ MonoBehaviour:
   m_text: You can shwitch between ZAP and PLACE mode with this button.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4829,7 +4829,7 @@ MonoBehaviour:
   m_text: This is the ENERGY tracker. It costs X ENERGY to ZAP buildings.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5112,7 +5112,7 @@ MonoBehaviour:
   m_text: 2/8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5247,7 +5247,7 @@ MonoBehaviour:
   m_text: These are the pollution meters. At 100% the planet will be fully polluted.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 24b98a026cf41364eabe706e74247d84, type: 2}
-  m_sharedMaterial: {fileID: 3896714688828265593, guid: 24b98a026cf41364eabe706e74247d84,
+  m_sharedMaterial: {fileID: -2858010690065103740, guid: 24b98a026cf41364eabe706e74247d84,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

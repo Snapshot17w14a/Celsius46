@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LowDensity
   m_EditorClassIdentifier: 
   popultionSupport: 100
+  toKillOnDestruction: 200
   airPollution: 0
   soilPollution: 2
   waterPollution: 2

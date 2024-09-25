@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PesticidePlant
   m_EditorClassIdentifier: 
   popultionSupport: 100
+  toKillOnDestruction: 100
   airPollution: 5
   soilPollution: 20
   waterPollution: 15

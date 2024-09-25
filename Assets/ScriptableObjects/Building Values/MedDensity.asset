@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: MedDensity
   m_EditorClassIdentifier: 
   popultionSupport: 100
+  toKillOnDestruction: 500
   airPollution: 0
   soilPollution: 2
   waterPollution: 2
-  minPopulation: 50
+  minPopulation: 500
   maxPopulation: 10000
   buildingName: Medium Density House
   buildingIcon: {fileID: 21300000, guid: 4a65b260f7f9f3942aa23f1cf92bb769, type: 3}
