@@ -9,6 +9,13 @@ public class ModeSwitch : MonoBehaviour
     [SerializeField] GameObject destroyIcon;
     [SerializeField] GameObject buildIcon;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchMode();
+        }
+    }
     public void SwitchMode()
     {
         if (currentMode == 0)
