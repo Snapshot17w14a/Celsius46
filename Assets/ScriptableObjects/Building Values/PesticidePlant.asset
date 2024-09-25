@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
   m_Name: PesticidePlant
   m_EditorClassIdentifier: 
-  popultionSupport: 10
+  popultionSupport: 100
   airPollution: 5
   soilPollution: 20
   waterPollution: 15
   minPopulation: 0
-  maxPopulation: 250
+  maxPopulation: 10000
   buildingName: Pesticide Plant
   buildingIcon: {fileID: 21300000, guid: 64f7259f791794f4a98b7e0cc1d9c1a9, type: 3}
   index: 6

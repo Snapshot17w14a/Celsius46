@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17222675d723ae438cad95e11273580, type: 3}
   m_Name: Seaweed
   m_EditorClassIdentifier: 
-  actionCost: 5
+  actionCost: 1
   airPollution: 2
   soilPollution: 2
   waterPollution: 2
