@@ -3,13 +3,13 @@ using UnityEngine;
 public class EndStateManager : MonoBehaviour
 {
     [SerializeField] private BarController barController;
-    [SerializeField] private YearConunter yearConunter;
+    [SerializeField] private YearCounter yearCounter;
 
     [SerializeField] private int endYear = 2050;
 
     private void Update()
     {
-        if (barController.pollutionProgress >= 1)
+        if (barController.temperature >= 46)
         {
             SceneLoader.LoadScene("LoseScene");
         }
@@ -19,7 +19,7 @@ public class EndStateManager : MonoBehaviour
             SceneLoader.LoadScene("LoseScene");
         }
 
-        if (yearConunter.GetYear >= endYear)
+        if (yearCounter.GetYear >= endYear)
         {
             SceneLoader.LoadScene("WinScene");
         }

@@ -21,6 +21,9 @@ public class BarController : MonoBehaviour
     [SerializeField] private int maxTemperature = 125;
     [SerializeField] private TextMeshProUGUI cumulativeTemperature;
     [SerializeField] private TextMeshProUGUI celsiusSymbol;
+
+    public int temperature = 14;
+
     public float PollutionValue
     {
         get
@@ -68,7 +71,8 @@ public class BarController : MonoBehaviour
 
     private void UpdateCumulativeTemperature()
     {
-        int temperature = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * pollutionProgress);
+        temperature = Mathf.RoundToInt(minTemperature + (maxTemperature - minTemperature) * pollutionProgress);
+        //Debug.Log(temperature);
         cumulativeTemperature.text = temperature.ToString();
 
         if (temperature > 40)

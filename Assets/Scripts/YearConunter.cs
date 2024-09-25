@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class YearConunter : MonoBehaviour
+public class YearCounter : MonoBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI yearText;
     [SerializeField] private float seconsPerYear = 1f;
@@ -13,17 +13,17 @@ public class YearConunter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        yearText.text = "year - " + year.ToString();
-        StartCoroutine(YearCounter());
+        yearText.text = "Year - " + year.ToString() + " A.D.";
+        StartCoroutine(YearCounterCoroutine());
     }
 
-    private IEnumerator YearCounter()
+    private IEnumerator YearCounterCoroutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(seconsPerYear);
             year++;
-            yearText.text = "year - " + year.ToString();
+            yearText.text = "Year - " + year.ToString() + " A.D.";
         }
     }
 }
