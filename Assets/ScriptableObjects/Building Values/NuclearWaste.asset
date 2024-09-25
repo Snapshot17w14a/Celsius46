@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popultionSupport: 100
   toKillOnDestruction: 100
-  airPollution: 150
-  soilPollution: 100
-  waterPollution: 50
+  airPollution: 73.5
+  soilPollution: 49
+  waterPollution: 24.5
   minPopulation: 0
   maxPopulation: 10000
   buildingName: Nuclear Waste
