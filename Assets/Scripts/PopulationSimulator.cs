@@ -52,11 +52,6 @@ public class PopulationSimulator : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        StartCoroutine(SimulationStep());
-    }
-
     private IEnumerator SimulationStep()
     {
         while (true)
@@ -169,5 +164,10 @@ public class PopulationSimulator : MonoBehaviour
     public void SubtractPopulation(int amount)
     {
         population -= amount;
+    }
+
+    public void StartSimulation()
+    {
+        StartCoroutine(SimulationStep());
     }
 }

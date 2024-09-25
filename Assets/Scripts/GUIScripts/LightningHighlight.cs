@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class HighlightObjects : MonoBehaviour
 {
@@ -10,13 +11,18 @@ public class HighlightObjects : MonoBehaviour
     [SerializeField] private float prefabLifetime = 5f;            // Lifetime of the prefab before it gets destroyed
     [SerializeField] private int cost = 10;
 
+    [SerializeField] ModeSwitch ModeHandler;
+
     private Dictionary<GameObject, Material[]> originalMaterials = new Dictionary<GameObject, Material[]>(); // Store original materials to restore later
     private bool isHighlighted = false;  // Toggle state to track whether objects are highlighted or reset  
 
-    void Update()
+    int lastMode = -1;  // Variable to keep track of the last mode
+
+    void Update() // Assuming this is running in a method like Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (ModeHandler.currentMode == 1 && lastMode != 1)
         {
+            // Only toggle the highlight when the mode changes to 1
             if (isHighlighted)
             {
                 ResetObjectsMaterial();
@@ -28,7 +34,7 @@ public class HighlightObjects : MonoBehaviour
             isHighlighted = !isHighlighted;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (ModeHandler.currentMode == 0 && lastMode != 0)
         {
             if (isHighlighted)
             {
@@ -37,6 +43,7 @@ public class HighlightObjects : MonoBehaviour
             }
         }
 
+        lastMode = ModeHandler.currentMode;  // Update the last mode
 
         if (Input.GetMouseButtonDown(0)) // Left mouse button
         {

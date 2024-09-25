@@ -12,6 +12,8 @@ public class NatureHandler : MonoBehaviour
     [SerializeField] private Texture2D planetTexture;  // Texture to sample for nature placement
     [SerializeField] private Mesh planetMesh;  // Mesh to sample for UV coordinates
 
+    [SerializeField] ModeSwitch ModeHandler;
+
     [Header("Colors for the placement limiter")]
     [SerializeField] private Color landColor;
     [SerializeField] private Color sandColor;
@@ -42,14 +44,14 @@ public class NatureHandler : MonoBehaviour
     void Update()
     {
         // Toggle nature placement mode when "2" key is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (ModeHandler.currentMode == 0)
         {
             isInNaturePlacementMode = !isInNaturePlacementMode;
             isDragging = false;  // Stop dragging when nature placement mode is toggled
             Debug.Log(isInNaturePlacementMode ? "Nature Placement Mode Activated!" : "Nature Placement Mode Deactivated!");
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (ModeHandler.currentMode == 1)
         {
             isInNaturePlacementMode = false;
             isDragging = false;  // Stop dragging when deactivating the mode
