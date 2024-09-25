@@ -7,6 +7,12 @@ public class EndStateManager : MonoBehaviour
 
     [SerializeField] private int endYear = 2050;
 
+    private void Start()
+    {
+        Debug.Log(barController == null ? "BarController is null" : "BarController is assigned");
+        Debug.Log(yearCounter == null ? "YearCounter is null" : "YearCounter is assigned");
+    }
+
     private void Update()
     {
         if (barController.temperature >= 46)
