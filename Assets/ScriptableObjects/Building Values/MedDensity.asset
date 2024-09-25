@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
   m_Name: MedDensity
   m_EditorClassIdentifier: 
-  popultionSupport: 75
+  popultionSupport: 100
   airPollution: 0
   soilPollution: 2
   waterPollution: 2
   minPopulation: 50
-  maxPopulation: 1000
+  maxPopulation: 10000
   buildingName: Medium Density House
   buildingIcon: {fileID: 21300000, guid: 4a65b260f7f9f3942aa23f1cf92bb769, type: 3}
   index: 1

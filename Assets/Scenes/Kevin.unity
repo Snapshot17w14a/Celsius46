@@ -20922,9 +20922,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulationIdleTime: 1
-  childChance: 10
-  populationForNewBuilding: 95
-  populationForActionPoint: 100
+  childChance: 5
+  populationForNewBuilding: 99
+  populationForActionPoint: 1000
   maxActionPoints: 100
   populationDisplay: {fileID: 970481341}
   actionDisplay: {fileID: 1221253679}

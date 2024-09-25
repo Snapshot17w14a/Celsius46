@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
   m_Name: LowDensity
   m_EditorClassIdentifier: 
-  popultionSupport: 35
+  popultionSupport: 100
   airPollution: 0
   soilPollution: 2
   waterPollution: 2
   minPopulation: 0
-  maxPopulation: 1000
+  maxPopulation: 10000
   buildingName: Low Density House
   buildingIcon: {fileID: 21300000, guid: 49809d53120775f4396745fc3e041733, type: 3}
+  index: 0
