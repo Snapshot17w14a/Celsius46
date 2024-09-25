@@ -30,6 +30,8 @@ public class PopulationSimulator : MonoBehaviour
     private int population = 10;
     private int maxPopulation = 10;
 
+    public int firsttimeMaxPopulation = 10;
+
     private float actionPointFragment = 0;
     private int availableActionPoints = 0;
 
@@ -94,7 +96,7 @@ public class PopulationSimulator : MonoBehaviour
         {
             tempMaxPopulation += building.GetUpkeepValue;
         }
-        return tempMaxPopulation;
+        return tempMaxPopulation + firsttimeMaxPopulation;
     }
 
     private int GetPotentionPopulation()

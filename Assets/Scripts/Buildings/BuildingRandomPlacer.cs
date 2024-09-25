@@ -176,6 +176,7 @@ public class PlanetPrefabSpawner : MonoBehaviour
             // Choose a random land building from the array
             buildingPrefab = landBuildings[Random.Range(0, landBuildings.Length)];
             Building newBuilding = Instantiate(buildingPrefab, position, Quaternion.LookRotation((position - Vector3.zero).normalized), transform);
+            PopulationSimulator.Instance.firsttimeMaxPopulation = 0;
 
             // Highlight the newly spawned building if the highlight system is active
             HighlightObjects highlightSystem = FindObjectOfType<HighlightObjects>();
