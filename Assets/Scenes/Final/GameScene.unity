@@ -21169,7 +21169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yearText: {fileID: 1995988342}
-  seconsPerYear: 15
+  seconsPerYear: 12
 --- !u!1 &1999592617
 GameObject:
   m_ObjectHideFlags: 0

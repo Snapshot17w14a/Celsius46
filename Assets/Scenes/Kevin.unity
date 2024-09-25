@@ -459,6 +459,7 @@ MonoBehaviour:
   maxTemperature: 46
   cumulativeTemperature: {fileID: 1695205893}
   celsiusSymbol: {fileID: 559251581}
+  temperature: 14
 --- !u!224 &33802587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18907,8 +18908,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barController: {fileID: 33802586}
-  yearConunter: {fileID: 1995988344}
-  endYear: 2025
+  yearCounter: {fileID: 1995988344}
+  endYear: 2050
 --- !u!4 &1554015085
 Transform:
   m_ObjectHideFlags: 0
@@ -21168,7 +21169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yearText: {fileID: 1995988342}
-  seconsPerYear: 60
+  seconsPerYear: 12
 --- !u!1 &1999592617
 GameObject:
   m_ObjectHideFlags: 0
