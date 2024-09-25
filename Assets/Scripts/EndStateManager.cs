@@ -11,12 +11,12 @@ public class EndStateManager : MonoBehaviour
     {
         if (barController.temperature >= 46)
         {
-            SceneLoader.LoadScene("LoseScene");
+            SceneLoader.LoadScene("HighPollution");
         }
 
         if (PopulationSimulator.Instance.GetPopulation <= 0)
         {
-            SceneLoader.LoadScene("LoseScene");
+            SceneLoader.LoadScene("NoPopulation");
         }
 
         if (yearCounter.GetYear >= endYear)
