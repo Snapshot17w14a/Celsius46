@@ -22,7 +22,10 @@ public class ModeSwitch : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            SwitchMode();
+        }
     }
 
     public void SwitchMode()

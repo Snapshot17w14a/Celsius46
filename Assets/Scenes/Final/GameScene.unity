@@ -20623,7 +20623,7 @@ MonoBehaviour:
   barController: {fileID: 33802586}
   yearCounter: {fileID: 1995988344}
   gameEnd: {fileID: 968056927}
-  endYear: 2025
+  endYear: 2050
 --- !u!4 &1554015085
 Transform:
   m_ObjectHideFlags: 0
