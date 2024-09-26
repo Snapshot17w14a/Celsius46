@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Security.Cryptography;
 
 public class PopulationSimulator : MonoBehaviour
 {
@@ -170,5 +171,10 @@ public class PopulationSimulator : MonoBehaviour
     public void StartSimulation()
     {
         StartCoroutine(SimulationStep());
+    }
+
+    public void StopSimulation()
+    {
+        StopCoroutine(SimulationStep());
     }
 }

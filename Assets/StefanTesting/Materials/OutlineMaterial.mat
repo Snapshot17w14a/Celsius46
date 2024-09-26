@@ -52,9 +52,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _FadeDistance: -0.28
+    - _IsDestroyMode: 1
     - _OutlineThickness: 0.0025
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _DestroyColor: {r: 1, g: 0, b: 0, a: 0}
+    - _NormalColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

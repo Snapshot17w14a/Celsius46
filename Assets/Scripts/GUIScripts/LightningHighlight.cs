@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 public class HighlightObjects : MonoBehaviour
 {
     [SerializeField] private string tagToHighlight = "Highlight";  // Tag of objects to highlight
-    [SerializeField] private Material highlightMaterial;           // Material used for highlighting
-    [SerializeField] private Material defaultMaterial;             // Default material to apply when resetting
+    [SerializeField] private Material highlightMaterial;
     [SerializeField] private GameObject prefabToSpawn;             // Prefab to spawn at the clicked object's location
     [SerializeField] private float prefabLifetime = 5f;            // Lifetime of the prefab before it gets destroyed
     [SerializeField] private int cost = 10;
@@ -21,24 +20,12 @@ public class HighlightObjects : MonoBehaviour
     {
         isInDestroyMode = ModeHandler.GetterCurrentMode == ModeSwitch.Mode.destroy;
 
-        if (isInDestroyMode)
-        {
-            // Only toggle the highlight when the mode changes to 1
-            if (isHighlighted)
-            {
-                ResetObjectsMaterial();
-            }
-            else
-            {
-                HighlightTaggedObjects();
-            }
-        }
+        highlightMaterial.SetInt("_IsDestroyMode", isInDestroyMode ? 1 : 0);
 
         if (!isInDestroyMode)
         {
             if (!isHighlighted)
             {
-                ResetObjectsMaterial();
                 isInDestroyMode = false;
                 isHighlighted = false;  // Ensure that highlight mode is turned off
             }
@@ -99,34 +86,34 @@ public class HighlightObjects : MonoBehaviour
     }
 
     // Function to reset the highlighted objects to their original materials
-    public void ResetObjectsMaterial()
-    {
-        GameObject[] objectsToReset = GameObject.FindGameObjectsWithTag(tagToHighlight);
+    //public void ResetObjectsMaterial()
+    //{
+    //    GameObject[] objectsToReset = GameObject.FindGameObjectsWithTag(tagToHighlight);
 
-        foreach (GameObject obj in objectsToReset)
-        {
-            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+    //    foreach (GameObject obj in objectsToReset)
+    //    {
+    //        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
 
-            foreach (Renderer renderer in renderers)
-            {
-                if (renderer.materials.Length > 1)
-                {
-                    if (originalMaterials.ContainsKey(obj))
-                    {
-                        renderer.materials = originalMaterials[obj];
-                    }
-                    else if (defaultMaterial != null)
-                    {
-                        Material[] materials = renderer.materials;
-                        materials[1] = defaultMaterial;
-                        renderer.materials = materials;
-                    }
-                }
-            }
-        }
+    //        foreach (Renderer renderer in renderers)
+    //        {
+    //            if (renderer.materials.Length > 1)
+    //            {
+    //                if (originalMaterials.ContainsKey(obj))
+    //                {
+    //                    renderer.materials = originalMaterials[obj];
+    //                }
+    //                else if (defaultMaterial != null)
+    //                {
+    //                    Material[] materials = renderer.materials;
+    //                    materials[1] = defaultMaterial;
+    //                    renderer.materials = materials;
+    //                }
+    //            }
+    //        }
+    //    }
 
-        originalMaterials.Clear();
-    }
+    //    originalMaterials.Clear();
+    //}
 
     private void DetectHighlightedObject()
     {
@@ -146,32 +133,30 @@ public class HighlightObjects : MonoBehaviour
 
                 if (renderer != null && renderer.materials.Length > 1)
                 {
-                    if (IsHighlightMaterial(renderer.materials[1]))
+
+                    if (prefabToSpawn != null)
                     {
-                        if (prefabToSpawn != null)
+                        Vector3 spawnPosition = hit.point;
+
+                        // Calculate direction to the origin
+                        Vector3 directionToCenter = Vector3.zero - spawnPosition;
+                        Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
+
+                        GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
+                        PopulationSimulator.Instance.SubtractActionPoint(spawnedPrefab.GetComponent<Plant>().GetActionCost);
+
+                        // If we are in highlight mode, highlight the newly spawned prefab
+                        if (isHighlighted)
                         {
-                            Vector3 spawnPosition = hit.point;
-
-                            // Calculate direction to the origin
-                            Vector3 directionToCenter = Vector3.zero - spawnPosition;
-                            Quaternion spawnRotation = Quaternion.LookRotation(directionToCenter, Vector3.up);
-
-                            GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
-                            PopulationSimulator.Instance.SubtractActionPoint(spawnedPrefab.GetComponent<Plant>().GetActionCost);
-
-                            // If we are in highlight mode, highlight the newly spawned prefab
-                            if (isHighlighted)
-                            {
-                                // Track and highlight the prefab
-                                TrackAndHighlightNewPrefab(spawnedPrefab);
-                            }
-
-                            // Start coroutine to handle prefab lifetime
-                            Destroy(spawnedPrefab, prefabLifetime);
-
-                            // Destroy the clicked object
-                            Destroy(clickedObject.transform.parent.transform.parent.gameObject);
+                            // Track and highlight the prefab
+                            TrackAndHighlightNewPrefab(spawnedPrefab);
                         }
+
+                        // Start coroutine to handle prefab lifetime
+                        Destroy(spawnedPrefab, prefabLifetime);
+
+                        // Destroy the clicked object
+                        Destroy(clickedObject.transform.parent.transform.parent.gameObject);
                     }
                 }
             }
@@ -197,17 +182,17 @@ public class HighlightObjects : MonoBehaviour
         }
     }
 
-    private bool IsHighlightMaterial(Material material)
-    {
-        if (material == null || highlightMaterial == null)
-        {
-            return false;
-        }
+    //private bool IsHighlightMaterial(Material material)
+    //{
+    //    if (material == null || highlightMaterial == null)
+    //    {
+    //        return false;
+    //    }
 
-        // Compare properties like color or shader name if needed
-        bool sameShader = material.shader == highlightMaterial.shader;
+    //    // Compare properties like color or shader name if needed
+    //    bool sameShader = material.shader == highlightMaterial.shader;
 
-        // Adjust the comparison logic based on your needs
-        return sameShader;
-    }
+    //    // Adjust the comparison logic based on your needs
+    //    return sameShader;
+    //}
 }

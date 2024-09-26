@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEnd : MonoBehaviour
@@ -11,11 +9,14 @@ public class GameEnd : MonoBehaviour
     {
         for(int i = 0; i < BuildingsParent.transform.childCount; i++)
         {
-            Destroy(BuildingsParent.transform.GetChild(i).gameObject);
+            DestroyImmediate(BuildingsParent.transform.GetChild(i).gameObject);
         }
         for (int i = 0; i < NatureParent.transform.childCount; i++)
         {
-            Destroy(NatureParent.transform.GetChild(i).gameObject);
+            DestroyImmediate(NatureParent.transform.GetChild(i).gameObject);
         }
+        DestroyImmediate(BuildingsParent);
+        DestroyImmediate(NatureParent);
+        PopulationSimulator.Instance.StopSimulation();
     }
 }
