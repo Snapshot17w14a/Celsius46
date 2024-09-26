@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
+  m_Name: CoalPowerPlant
+  m_EditorClassIdentifier: 
+  popultionSupport: 100
+  toKillOnDestruction: 100
+  airPollution: 73.5
+  soilPollution: 24.5
+  waterPollution: 24.5
+  minPopulation: 0
+  maxPopulation: 10000
+  buildingName: Coal Power Plant
+  buildingIcon: {fileID: 21300000, guid: 5bbb49a65eb7fa842af072ee7d4bd216, type: 3}
+  index: 4

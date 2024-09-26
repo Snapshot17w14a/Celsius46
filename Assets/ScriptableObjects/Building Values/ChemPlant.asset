@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a1346c56b7a934ab1cfcf71c16f6eb, type: 3}
+  m_Name: ChemPlant
+  m_EditorClassIdentifier: 
+  popultionSupport: 100
+  toKillOnDestruction: 100
+  airPollution: 49
+  soilPollution: 24.5
+  waterPollution: 24.5
+  minPopulation: 0
+  maxPopulation: 10000
+  buildingName: Chemical Plant
+  buildingIcon: {fileID: 21300000, guid: f6fddeb824b546247b1ae3dc594777dc, type: 3}
+  index: 5

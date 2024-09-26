@@ -44,6 +44,8 @@ ExportedObj/
 *.svd
 *.pdb
 *.mdb
+*.rar
+*.zip
 *.opendb
 *.VC.db
 
@@ -70,3 +72,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+/[Aa]ssets/Materials/TextureBlend.mat
